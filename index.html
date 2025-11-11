@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alvorya Vision - Intelligent Software Organization</title>
+    <title>Alvorya Vision - Organização Inteligente de Software</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="icon" href="assets/logo_transparent_2.png" />
@@ -33,11 +33,35 @@
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(239, 68, 68, 0.3);
         }
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            z-index: 9999;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        .notification.show {
+            transform: translateX(0);
+        }
+        .notification.success {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+        .notification.error {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
     </style>
 </head>
 <body class="bg-slate-900 text-white">
     
-    <!-- Navigation -->
+    <!-- Notificação -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Navegação -->
     <nav class="fixed w-full z-50 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
@@ -50,16 +74,16 @@
                     </div>
                 </div>
                 
-                <!-- Desktop Menu -->
+                <!-- Menu Desktop -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="hover:text-red-500 transition nav-link">Home</a>
-                    <a href="#features" class="hover:text-red-500 transition nav-link">Features</a>
-                    <a href="#solutions" class="hover:text-red-500 transition nav-link">Solutions</a>
-                    <a href="#portfolio" class="hover:text-red-500 transition nav-link">Portfolio</a>
-                    <a href="#contact" class="hover:text-red-500 transition nav-link">Contact</a>
+                    <a href="#home" class="hover:text-red-500 transition nav-link">Início</a>
+                    <a href="#features" class="hover:text-red-500 transition nav-link">Recursos</a>
+                    <a href="#solutions" class="hover:text-red-500 transition nav-link">Soluções</a>
+                    <a href="#portfolio" class="hover:text-red-500 transition nav-link">Portfólio</a>
+                    <a href="#contact" class="hover:text-red-500 transition nav-link">Contato</a>
                 </div>
                 
-                <!-- Mobile Menu Button -->
+                <!-- Botão Menu Mobile -->
                 <button id="mobile-menu-btn" class="md:hidden text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -67,20 +91,20 @@
                 </button>
             </div>
             
-            <!-- Mobile Menu -->
+            <!-- Menu Mobile -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
-                <a href="#home" class="block py-2 hover:text-red-500 transition nav-link">Home</a>
-                <a href="#features" class="block py-2 hover:text-red-500 transition nav-link">Features</a>
-                <a href="#solutions" class="block py-2 hover:text-red-500 transition nav-link">Solutions</a>
-                <a href="#portfolio" class="block py-2 hover:text-red-500 transition nav-link">Portfolio</a>
-                <a href="#contact" class="block py-2 hover:text-red-500 transition nav-link">Contact</a>
+                <a href="#home" class="block py-2 hover:text-red-500 transition nav-link">Início</a>
+                <a href="#features" class="block py-2 hover:text-red-500 transition nav-link">Recursos</a>
+                <a href="#solutions" class="block py-2 hover:text-red-500 transition nav-link">Soluções</a>
+                <a href="#portfolio" class="block py-2 hover:text-red-500 transition nav-link">Portfólio</a>
+                <a href="#contact" class="block py-2 hover:text-red-500 transition nav-link">Contato</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Seção Hero -->
     <section id="home" class="min-h-screen gradient-bg pt-24 relative overflow-hidden">
-        <!-- Animated Background Elements -->
+        <!-- Elementos de Fundo Animados -->
         <div class="absolute inset-0 overflow-hidden">
             <div class="absolute top-20 right-20 w-64 h-64 bg-red-500/10 rounded-full blur-3xl pulse-glow"></div>
             <div class="absolute bottom-20 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pulse-glow"></div>
@@ -91,14 +115,14 @@
                 <div class="space-y-8">
                     <h2 class="text-5xl md:text-6xl font-bold leading-tight">
                         ALVORYA VISION:<br/>
-                        <span class="text-red-500">INTELLIGENT SOFTWARE</span><br/>
-                        ORGANIZATION
+                        <span class="text-red-500">ORGANIZAÇÃO INTELIGENTE</span><br/>
+                        DE SOFTWARE
                     </h2>
                     <p class="text-xl text-slate-300">
-                        Streamline your projects with AI powered clarity and precision
+                        Otimize seus projetos com clareza e precisão impulsionadas por IA
                     </p>
                     <button class="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 shadow-lg hover:shadow-red-500/50">
-                        EXPLORE OUR PLATFORM
+                        EXPLORE NOSSA PLATAFORMA
                     </button>
                 </div>
                 
@@ -135,11 +159,11 @@
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Seção de Recursos -->
     <section id="features" class="py-20 bg-slate-800/50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Our <span class="text-red-500">Features</span></h2>
+                <h2 class="text-4xl font-bold mb-4">Nossos <span class="text-red-500">Recursos</span></h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-pink-500 mx-auto"></div>
             </div>
             
@@ -150,8 +174,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">AI-Powered</h3>
-                    <p class="text-slate-400">Leverage cutting-edge artificial intelligence to automate and optimize your workflows with unprecedented accuracy.</p>
+                    <h3 class="text-2xl font-bold mb-4">Potencializado por IA</h3>
+                    <p class="text-slate-400">Aproveite a inteligência artificial de ponta para automatizar e otimizar seus fluxos de trabalho com precisão sem precedentes.</p>
                 </div>
                 
                 <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-red-500 transition">
@@ -160,8 +184,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Real-Time Analytics</h3>
-                    <p class="text-slate-400">Get instant insights and metrics that matter most to your business with our advanced analytics dashboard.</p>
+                    <h3 class="text-2xl font-bold mb-4">Análises em Tempo Real</h3>
+                    <p class="text-slate-400">Obtenha insights instantâneos e métricas que mais importam para o seu negócio com nosso painel de análises avançado.</p>
                 </div>
                 
                 <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-red-500 transition">
@@ -170,18 +194,18 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Secure & Reliable</h3>
-                    <p class="text-slate-400">Enterprise-grade security with 99.9% uptime guarantee ensures your data is always protected and accessible.</p>
+                    <h3 class="text-2xl font-bold mb-4">Seguro e Confiável</h3>
+                    <p class="text-slate-400">Segurança de nível empresarial com garantia de 99,9% de uptime garante que seus dados estejam sempre protegidos e acessíveis.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Solutions Section -->
+    <!-- Seção de Soluções -->
     <section id="solutions" class="py-20 gradient-bg">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">OUR <span class="text-red-500">SOLUTIONS</span></h2>
+                <h2 class="text-4xl font-bold mb-4">NOSSAS <span class="text-red-500">SOLUÇÕES</span></h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-pink-500 mx-auto"></div>
             </div>
             
@@ -192,8 +216,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">AI-DRIVEN ANALYTICS</h3>
-                    <p class="text-slate-400">Transform raw data into actionable insights with our advanced machine learning algorithms and predictive analytics.</p>
+                    <h3 class="text-2xl font-bold mb-4">ANÁLISES ORIENTADAS POR IA</h3>
+                    <p class="text-slate-400">Transforme dados brutos em insights acionáveis com nossos algoritmos avançados de aprendizado de máquina e análises preditivas.</p>
                 </div>
                 
                 <div class="bg-slate-800/50 backdrop-blur-sm p-10 rounded-2xl border border-slate-700 card-hover text-center">
@@ -202,8 +226,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">VISUALIZE WORKFLOWS</h3>
-                    <p class="text-slate-400">Map out complex processes with intuitive visual tools that make collaboration seamless and efficient across teams.</p>
+                    <h3 class="text-2xl font-bold mb-4">VISUALIZE FLUXOS DE TRABALHO</h3>
+                    <p class="text-slate-400">Mapeie processos complexos com ferramentas visuais intuitivas que tornam a colaboração perfeita e eficiente entre equipes.</p>
                 </div>
                 
                 <div class="bg-slate-800/50 backdrop-blur-sm p-10 rounded-2xl border border-slate-700 card-hover text-center">
@@ -212,20 +236,20 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">SMART PROJECT MANAGEMENT</h3>
-                    <p class="text-slate-400">Streamline project execution with intelligent task allocation, progress tracking, and automated reporting systems.</p>
+                    <h3 class="text-2xl font-bold mb-4">GESTÃO INTELIGENTE DE PROJETOS</h3>
+                    <p class="text-slate-400">Otimize a execução de projetos com alocação inteligente de tarefas, acompanhamento de progresso e sistemas automatizados de relatórios.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
+    <!-- Seção de Portfólio -->
     <section id="portfolio" class="py-20 bg-slate-800/50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Our <span class="text-red-500">Portfolio</span></h2>
+                <h2 class="text-4xl font-bold mb-4">Nosso <span class="text-red-500">Portfólio</span></h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-pink-500 mx-auto mb-4"></div>
-                <p class="text-slate-400 max-w-2xl mx-auto">Discover how we've helped organizations transform their operations with cutting-edge solutions</p>
+                <p class="text-slate-400 max-w-2xl mx-auto">Descubra como ajudamos organizações a transformar suas operações com soluções de ponta</p>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -234,8 +258,8 @@
                         <span class="text-6xl">🚀</span>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Enterprise Platform</h3>
-                        <p class="text-slate-400">Complete digital transformation for Fortune 500 company</p>
+                        <h3 class="text-xl font-bold mb-2">Plataforma Empresarial</h3>
+                        <p class="text-slate-400">Transformação digital completa para empresa Fortune 500</p>
                     </div>
                 </div>
                 
@@ -244,8 +268,8 @@
                         <span class="text-6xl">📊</span>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Analytics Dashboard</h3>
-                        <p class="text-slate-400">Real-time insights for data-driven decisions</p>
+                        <h3 class="text-xl font-bold mb-2">Painel de Análises</h3>
+                        <p class="text-slate-400">Insights em tempo real para decisões baseadas em dados</p>
                     </div>
                 </div>
                 
@@ -254,50 +278,46 @@
                         <span class="text-6xl">🎯</span>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">AI Automation</h3>
-                        <p class="text-slate-400">Intelligent process automation reducing costs by 40%</p>
+                        <h3 class="text-xl font-bold mb-2">Automação com IA</h3>
+                        <p class="text-slate-400">Automação inteligente de processos reduzindo custos em 40%</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Seção de Contato -->
     <section id="contact" class="py-20 gradient-bg">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Get In <span class="text-red-500">Touch</span></h2>
+                <h2 class="text-4xl font-bold mb-4">Entre em <span class="text-red-500">Contato</span></h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-pink-500 mx-auto mb-4"></div>
-                <p class="text-slate-400 max-w-2xl mx-auto">Ready to transform your business? Let's start a conversation</p>
+                <p class="text-slate-400 max-w-2xl mx-auto">Pronto para transformar seu negócio? Vamos iniciar uma conversa</p>
             </div>
             
             <div class="max-w-2xl mx-auto">
-                <form class="space-y-6">
+                <form id="contactForm" class="space-y-6">
                     <div class="grid md:grid-cols-2 gap-6">
-                        <input type="text" placeholder="Your Name" class="w-full px-6 py-4 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:border-red-500 transition">
-                        <input type="email" placeholder="Your Email" class="w-full px-6 py-4 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:border-red-500 transition">
+                        <input type="text" name="nome" placeholder="Seu Nome" required class="w-full px-6 py-4 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:border-red-500 transition">
+                        <input type="email" name="email" placeholder="Seu Email" required class="w-full px-6 py-4 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:border-red-500 transition">
                     </div>
-                    <input type="text" placeholder="Subject" class="w-full px-6 py-4 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:border-red-500 transition">
-                    <textarea placeholder="Your Message" rows="6" class="w-full px-6 py-4 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:border-red-500 transition"></textarea>
-                    <button type="submit" class="w-full bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 shadow-lg hover:shadow-red-500/50">
-                        Send Message
+                    <input type="text" name="assunto" placeholder="Assunto" required class="w-full px-6 py-4 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:border-red-500 transition">
+                    <textarea name="mensagem" placeholder="Sua Mensagem" rows="6" required class="w-full px-6 py-4 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:border-red-500 transition"></textarea>
+                    <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 shadow-lg hover:shadow-red-500/50">
+                        Enviar Mensagem
                     </button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Rodapé -->
     <footer class="bg-slate-900 border-t border-slate-800 py-12">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center space-x-3 mb-6 md:mb-0">
                     <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center">
-                        <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none">
-                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                        </svg>
+                        <img class="w-8 h-8 text-white" src="assets/logo_transparent_2.png" alt="Alvorya Vision Logo">
                     </div>
                     <div>
                         <h1 class="text-xl font-bold">alvorya <span class="text-red-500">vision</span></h1>
@@ -325,19 +345,21 @@
             </div>
             
             <div class="mt-8 pt-8 border-t border-slate-800 text-center text-slate-400">
-                <p>&copy; 2025 Alvorya Vision. All rights reserved.</p>
+                <p>&copy; 2025 Alvorya Vision. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
     <script>
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx7lFbygYfe37ZdtiP7-US1evDria7s1Hp8iHmrQqvZps9Bo3xGq5QmYnYjbXd7mEMg/exec';
+
         $(document).ready(function() {
-            // Mobile menu toggle
+            // Toggle do menu mobile
             $('#mobile-menu-btn').click(function() {
                 $('#mobile-menu').slideToggle(300);
             });
             
-            // Smooth scrolling for navigation links
+            // Scroll suave para links de navegação
             $('.nav-link').click(function(e) {
                 e.preventDefault();
                 const target = $(this).attr('href');
@@ -345,13 +367,13 @@
                     scrollTop: $(target).offset().top - 80
                 }, 800);
                 
-                // Close mobile menu after clicking
+                // Fechar menu mobile após clicar
                 if ($(window).width() < 768) {
                     $('#mobile-menu').slideUp(300);
                 }
             });
             
-            // Add active class to nav links on scroll
+            // Adicionar classe ativa aos links de navegação no scroll
             $(window).scroll(function() {
                 const scrollPos = $(window).scrollTop() + 100;
                 
@@ -369,7 +391,7 @@
                 });
             });
             
-            // Animate elements on scroll
+            // Animar elementos no scroll
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -379,20 +401,71 @@
                 });
             }, { threshold: 0.1 });
             
-            // Add animation classes to sections
+            // Adicionar classes de animação às seções
             $('section').addClass('opacity-0 translate-y-10 transition-all duration-1000');
             
             document.querySelectorAll('section').forEach((section) => {
                 observer.observe(section);
             });
             
-            // Form submission
-            $('form').submit(function(e) {
+            // Envio do formulário para Google Sheets
+            $('#contactForm').submit(function(e) {
                 e.preventDefault();
-                alert('Obrigado por entrar em contato! Responderemos em breve.');
-                this.reset();
+                
+                const submitBtn = $('#submitBtn');
+                const originalText = submitBtn.text();
+                
+                // Desabilitar botão e mostrar loading
+                submitBtn.prop('disabled', true).text('Enviando...');
+                
+                // Coletar dados do formulário
+                const formData = {
+                    nome: $('input[name="nome"]').val(),
+                    email: $('input[name="email"]').val(),
+                    assunto: $('input[name="assunto"]').val(),
+                    mensagem: $('textarea[name="mensagem"]').val(),
+                    data: new Date().toLocaleString('pt-BR')
+                };
+                
+                // Enviar para Google Sheets
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(() => {
+                    // Mostrar notificação de sucesso
+                    showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
+                    
+                    // Limpar formulário
+                    document.getElementById('contactForm').reset();
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    showNotification('Erro ao enviar mensagem. Por favor, tente novamente.', 'error');
+                })
+                .finally(() => {
+                    // Reabilitar botão
+                    submitBtn.prop('disabled', false).text(originalText);
+                });
             });
+            
+            // Função para mostrar notificações
+            function showNotification(message, type) {
+                const notification = $('#notification');
+                notification.text(message);
+                notification.removeClass('success error');
+                notification.addClass(type);
+                notification.addClass('show');
+                
+                setTimeout(() => {
+                    notification.removeClass('show');
+                }, 5000);
+            }
         });
     </script>
 </body>
-</html>
+</html
