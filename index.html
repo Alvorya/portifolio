@@ -34,17 +34,33 @@
             box-shadow: 0 20px 40px rgba(239, 68, 68, 0.3);
         }
         .notification {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            padding: 16px 24px;
-            border-radius: 8px;
-            color: white;
-            font-weight: 600;
-            z-index: 9999;
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-        }
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #22c55e;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-weight: 500;
+  z-index: 9999;
+  opacity: 0;
+  transform: translateX(150%);
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* entra */
+.notification.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* sai */
+.notification.hide {
+  opacity: 0;
+  transform: translateX(150%);
+}
+
         .notification.show {
             transform: translateX(0);
         }
@@ -454,18 +470,29 @@
             });
             
             // Função para mostrar notificações
-            function showNotification(message, type) {
-                const notification = $('#notification');
-                notification.text(message);
-                notification.removeClass('success error');
-                notification.addClass(type);
-                notification.addClass('show');
-                
-                setTimeout(() => {
-                    notification.removeClass('show');
-                }, 5000);
-            }
+            function showNotification(message, type = 'success') {
+  const notification = document.querySelector('.notification');
+  notification.textContent = message;
+
+  // Define a cor de acordo com o tipo
+  notification.style.backgroundColor = type === 'error' ? '#ef4444' : '#22c55e';
+
+  // Mostra a notificação
+  notification.classList.remove('hide');
+  notification.classList.add('show');
+
+  // Espera 3 segundos, depois começa a esconder
+  setTimeout(() => {
+    notification.classList.remove('show');
+    notification.classList.add('hide');
+  }, 3000)
+};
         });
+        
+
     </script>
 </body>
-</html
+</script>
+    </script>
+</body>
+</html> 
