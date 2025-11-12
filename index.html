@@ -34,17 +34,33 @@
             box-shadow: 0 20px 40px rgba(239, 68, 68, 0.3);
         }
         .notification {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            padding: 16px 24px;
-            border-radius: 8px;
-            color: white;
-            font-weight: 600;
-            z-index: 9999;
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-        }
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #22c55e;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-weight: 500;
+  z-index: 9999;
+  opacity: 0;
+  transform: translateX(150%);
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* entra */
+.notification.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* sai */
+.notification.hide {
+  opacity: 0;
+  transform: translateX(150%);
+}
+
         .notification.show {
             transform: translateX(0);
         }
@@ -255,32 +271,48 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="group relative overflow-hidden rounded-xl bg-slate-800 border border-slate-700 hover:border-red-500 transition">
                     <div class="h-64 bg-gradient-to-br from-red-500/20 to-purple-500/20 flex items-center justify-center">
-                        <span class="text-6xl">🚀</span>
+                        <div class="relative w-full h-80 rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
+                            <img src="Plataforma Empresarial.png"
+                                 alt="Plataforma Empresarial"
+                                 class="absolute inset-0 w-full h-full object-cover" />
+                          
+                                 <div class="absolute inset-0 bg-black/50 flex flex-col justify-end p-6 pb-10">
+
+                              <h3 class="text-xl font-bold text-white">Plataforma Empresarial</h3>
+                              <p class="text-slate-200">Transformação digital completa para empresa Fortune 500</p>
+                            </div>
+                          </div>
+                          
+
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Plataforma Empresarial</h3>
-                        <p class="text-slate-400">Transformação digital completa para empresa Fortune 500</p>
-                    </div>
+                    
                 </div>
                 
                 <div class="group relative overflow-hidden rounded-xl bg-slate-800 border border-slate-700 hover:border-red-500 transition">
                     <div class="h-64 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
-                        <span class="text-6xl">📊</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Painel de Análises</h3>
-                        <p class="text-slate-400">Insights em tempo real para decisões baseadas em dados</p>
+                       
+                    <div class="relative w-full h-80 rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
+                        <img src="Painel de Análises.png" alt="Painel de Análises" class="absolute inset-0 w-full h-full object-cover" />
+                        <div class="absolute inset-0 bg-black/50 flex flex-col justify-end p-6 pb-10">
+
+                          <h3 class="text-xl font-bold text-white">Painel de Análises</h3>
+                          <p class="text-slate-200">Insights em tempo real para decisões baseadas em dados</p>
+                        </div>
+                      </div>
                     </div>
                 </div>
                 
                 <div class="group relative overflow-hidden rounded-xl bg-slate-800 border border-slate-700 hover:border-red-500 transition">
                     <div class="h-64 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
-                        <span class="text-6xl">🎯</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Automação com IA</h3>
-                        <p class="text-slate-400">Automação inteligente de processos reduzindo custos em 40%</p>
-                    </div>
+                        <div class="relative w-full h-80 rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
+                            <img src="Automação com IA.png" alt="Automação com IA" class="absolute inset-0 w-full h-full object-cover" />
+                            <div class="absolute inset-0 bg-black/50 flex flex-col justify-end p-6 pb-10">
+
+                              <h3 class="text-xl font-bold text-white">Automação com IA</h3>
+                              <p class="text-slate-200">Automação inteligente de processos reduzindo custos em 40%</p>
+                            </div>
+                          </div>
+                        </div>     
                 </div>
             </div>
         </div>
@@ -454,18 +486,29 @@
             });
             
             // Função para mostrar notificações
-            function showNotification(message, type) {
-                const notification = $('#notification');
-                notification.text(message);
-                notification.removeClass('success error');
-                notification.addClass(type);
-                notification.addClass('show');
-                
-                setTimeout(() => {
-                    notification.removeClass('show');
-                }, 5000);
-            }
+            function showNotification(message, type = 'success') {
+  const notification = document.querySelector('.notification');
+  notification.textContent = message;
+
+  // Define a cor de acordo com o tipo
+  notification.style.backgroundColor = type === 'error' ? '#ef4444' : '#22c55e';
+
+  // Mostra a notificação
+  notification.classList.remove('hide');
+  notification.classList.add('show');
+
+  // Espera 3 segundos, depois começa a esconder
+  setTimeout(() => {
+    notification.classList.remove('show');
+    notification.classList.add('hide');
+  }, 3000)
+};
         });
+        
+
     </script>
 </body>
-</html
+</script>
+    </script>
+</body>
+</html> 
