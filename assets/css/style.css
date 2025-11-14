@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+
+@keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        .floating { animation: float 6s ease-in-out infinite; }
+        .rotating { animation: rotate 20s linear infinite; }
+        .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(239, 68, 68, 0.3);
+        }
+        .notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #22c55e;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-weight: 500;
+  z-index: 9999;
+  opacity: 0;
+  transform: translateX(150%);
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* entra */
+.notification.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* sai */
+.notification.hide {
+  opacity: 0;
+  transform: translateX(150%);
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+.notification.success {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+.notification.error {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}

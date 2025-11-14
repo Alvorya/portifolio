@@ -1,0 +1,18 @@
+{
+  "name": "alvorya-site",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && cp -r assets/images dist/assets/",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.17",
+    "tailwindcss": "^4.1.17"
+  },
+  "devDependencies": {
+    "jquery": "^3.7.1",
+    "vite": "^7.2.2"
+  }
+}
