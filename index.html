@@ -4,86 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alvorya Vision - Organização Inteligente de Software</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel="icon" href="assets/logo_transparent_2.png" />
-    <style>
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        @keyframes pulse-glow {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-        .floating { animation: float 6s ease-in-out infinite; }
-        .rotating { animation: rotate 20s linear infinite; }
-        .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
-        .gradient-bg {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-        }
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(239, 68, 68, 0.3);
-        }
-        .notification {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #22c55e;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  font-weight: 500;
-  z-index: 9999;
-  opacity: 0;
-  transform: translateX(150%);
-  transition: transform 0.6s ease, opacity 0.6s ease;
-}
-
-/* entra */
-.notification.show {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* sai */
-.notification.hide {
-  opacity: 0;
-  transform: translateX(150%);
-}
-
-        .notification.show {
-            transform: translateX(0);
-        }
-        .notification.success {
-            background: linear-gradient(135deg, #10b981, #059669);
-        }
-        .notification.error {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-        }
-    </style>
+    <link rel="icon" type="image/png" href="/assets/images/min/Logo.png">
+    <script type="module" src="/main.js"></script>
 </head>
 <body class="bg-slate-900 text-white">
-    
-    <!-- Notificação -->
     <div id="notification" class="notification"></div>
-
     <!-- Navegação -->
     <nav class="fixed w-full z-50 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
                     <div class="w-12 h-12 bg-gradient-to-br bg-slate-800 rounded-full flex items-center justify-center">
-                        <img class="w-8 h-8 text-white" src="assets/logo_transparent_2.png" alt="Alvorya Vision Logo" onerror="this.onerror=null; this.src='assets/logo_transparent_2.png'">
+                        <img class="w-12 h-12 text-white" src="https://www.alvorya.com.br/assets/images/min/Logo.png" alt="Alvorya Vision Logo" onerror="this.onerror=null; this.src='assets/images/min/Logo.png'">
                     </div>
                     <div>
                         <h1 class="text-xl font-bold">alvorya <span class="text-red-500">vision</span></h1>
@@ -267,32 +199,34 @@
                 <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-pink-500 mx-auto mb-4"></div>
                 <p class="text-slate-400 max-w-2xl mx-auto">Descubra como ajudamos organizações a transformar suas operações com soluções de ponta</p>
             </div>
-            
+
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="group relative overflow-hidden rounded-xl bg-slate-800 border border-slate-700 hover:border-red-500 transition">
                     <div class="h-64 bg-gradient-to-br from-red-500/20 to-purple-500/20 flex items-center justify-center">
                         <div class="relative w-full h-80 rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
-                            <img src="https://www.alvorya.com.br/assets/plataforma_empresarial.png" onerror="this.onerror=null; this.src='assets/plataforma_empresarial.png'"/>
-                                 alt="Plataforma Empresarial"
-                                 class="absolute inset-0 w-full h-full object-cover" />
-                          
+                            <img
+                                src="https://www.alvorya.com.br/assets/images/min/plataforma_empresarial.png"
+                                onerror="this.onerror=null; this.src='assets/images/min/plataforma_empresarial.png'"
+                                alt="Plataforma Empresarial"
+                                class="absolute inset-0 w-full h-full object-cover"
+                            />
                                  <div class="absolute inset-0 bg-black/50 flex flex-col justify-end p-6 pb-10">
 
                               <h3 class="text-xl font-bold text-white">Plataforma Empresarial</h3>
                               <p class="text-slate-200">Transformação digital completa para empresa Fortune 500</p>
                             </div>
                           </div>
-                          
-
                     </div>
-                    
                 </div>
                 
                 <div class="group relative overflow-hidden rounded-xl bg-slate-800 border border-slate-700 hover:border-red-500 transition">
                     <div class="h-64 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
                        
                     <div class="relative w-full h-80 rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
-                        <img src="https://www.alvorya.com.br/assets/painel_de_analises.png" alt="Painel de Análises" class="absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null; this.src= 'assets/painel_de_analises.png' "/>
+                            <img src="https://www.alvorya.com.br/assets/images/min/painel_de_analises.png"
+                            alt="Painel de Análises" class="absolute inset-0 w-full h-full object-cover"
+                            onerror="this.onerror=null; this.src= 'assets/images/min/painel_de_analises.png' "
+                            />
                         <div class="absolute inset-0 bg-black/50 flex flex-col justify-end p-6 pb-10">
 
                           <h3 class="text-xl font-bold text-white">Painel de Análises</h3>
@@ -305,9 +239,12 @@
                 <div class="group relative overflow-hidden rounded-xl bg-slate-800 border border-slate-700 hover:border-red-500 transition">
                     <div class="h-64 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
                         <div class="relative w-full h-80 rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
-                            <img src="https://www.alvorya.com.br/assets/automacao_com_ia.png" alt="Automação com IA" class="absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null; this.src='assets/automacao_com_ia.png'"/>
+                            <img
+                                src="https://www.alvorya.com.br/assets/images/min/automacao_com_ia.png"
+                                alt="Automação com IA" class="absolute inset-0 w-full h-full object-cover"
+                                onerror="this.onerror=null; this.src='assets/images/min/automacao_com_ia.png'"
+                            />
                             <div class="absolute inset-0 bg-black/50 flex flex-col justify-end p-6 pb-10">
-
                               <h3 class="text-xl font-bold text-white">Automação com IA</h3>
                               <p class="text-slate-200">Automação inteligente de processos reduzindo custos em 40%</p>
                             </div>
@@ -318,7 +255,6 @@
         </div>
     </section>
 
-    <!-- Seção de Contato -->
     <section id="contact" class="py-20 gradient-bg">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
@@ -343,13 +279,16 @@
         </div>
     </section>
 
-    <!-- Rodapé -->
     <footer class="bg-slate-900 border-t border-slate-800 py-12">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center space-x-3 mb-6 md:mb-0">
                     <div class="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center">
-                        <img class="w-8 h-8 text-white" src="assets/logo_transparent_2.png" alt="Alvorya Vision Logo" onerror="this.onerror=null; this.src='assets/logo_transparent_2.png'">
+                        <img
+                            class="w-12 h-12 text-white"
+                            src="https://www.alvorya.com.br/assets/images/min/Logo.png"
+                            alt="Alvorya Vision Logo" onerror="this.onerror=null; this.src='assets/images/min/Logo.png'"
+                        >
                     </div>
                     <div>
                         <h1 class="text-xl font-bold">alvorya <span class="text-red-500">vision</span></h1>
@@ -381,134 +320,5 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx7lFbygYfe37ZdtiP7-US1evDria7s1Hp8iHmrQqvZps9Bo3xGq5QmYnYjbXd7mEMg/exec';
-
-        $(document).ready(function() {
-            // Toggle do menu mobile
-            $('#mobile-menu-btn').click(function() {
-                $('#mobile-menu').slideToggle(300);
-            });
-            
-            // Scroll suave para links de navegação
-            $('.nav-link').click(function(e) {
-                e.preventDefault();
-                const target = $(this).attr('href');
-                $('html, body').animate({
-                    scrollTop: $(target).offset().top - 80
-                }, 800);
-                
-                // Fechar menu mobile após clicar
-                if ($(window).width() < 768) {
-                    $('#mobile-menu').slideUp(300);
-                }
-            });
-            
-            // Adicionar classe ativa aos links de navegação no scroll
-            $(window).scroll(function() {
-                const scrollPos = $(window).scrollTop() + 100;
-                
-                $('.nav-link').each(function() {
-                    const target = $(this).attr('href');
-                    if ($(target).length) {
-                        const targetTop = $(target).offset().top;
-                        const targetBottom = targetTop + $(target).outerHeight();
-                        
-                        if (scrollPos >= targetTop && scrollPos < targetBottom) {
-                            $('.nav-link').removeClass('text-red-500');
-                            $(this).addClass('text-red-500');
-                        }
-                    }
-                });
-            });
-            
-            // Animar elementos no scroll
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('opacity-100', 'translate-y-0');
-                        entry.target.classList.remove('opacity-0', 'translate-y-10');
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            // Adicionar classes de animação às seções
-            $('section').addClass('opacity-0 translate-y-10 transition-all duration-1000');
-            
-            document.querySelectorAll('section').forEach((section) => {
-                observer.observe(section);
-            });
-            
-            // Envio do formulário para Google Sheets
-            $('#contactForm').submit(function(e) {
-                e.preventDefault();
-                
-                const submitBtn = $('#submitBtn');
-                const originalText = submitBtn.text();
-                
-                // Desabilitar botão e mostrar loading
-                submitBtn.prop('disabled', true).text('Enviando...');
-                
-                // Coletar dados do formulário
-                const formData = {
-                    nome: $('input[name="nome"]').val(),
-                    email: $('input[name="email"]').val(),
-                    assunto: $('input[name="assunto"]').val(),
-                    mensagem: $('textarea[name="mensagem"]').val(),
-                    data: new Date().toLocaleString('pt-BR')
-                };
-                
-                // Enviar para Google Sheets
-                fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                })
-                .then(() => {
-                    // Mostrar notificação de sucesso
-                    showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
-                    
-                    // Limpar formulário
-                    document.getElementById('contactForm').reset();
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                    showNotification('Erro ao enviar mensagem. Por favor, tente novamente.', 'error');
-                })
-                .finally(() => {
-                    // Reabilitar botão
-                    submitBtn.prop('disabled', false).text(originalText);
-                });
-            });
-            
-            // Função para mostrar notificações
-            function showNotification(message, type = 'success') {
-  const notification = document.querySelector('.notification');
-  notification.textContent = message;
-
-  // Define a cor de acordo com o tipo
-  notification.style.backgroundColor = type === 'error' ? '#ef4444' : '#22c55e';
-
-  // Mostra a notificação
-  notification.classList.remove('hide');
-  notification.classList.add('show');
-
-  // Espera 3 segundos, depois começa a esconder
-  setTimeout(() => {
-    notification.classList.remove('show');
-    notification.classList.add('hide');
-  }, 3000)
-};
-        });
-        
-
-    </script>
-</body>
-</script>
-    </script>
 </body>
 </html> 
