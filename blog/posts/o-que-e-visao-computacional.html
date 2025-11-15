@@ -54,18 +54,45 @@
         
         article h2 {
             color: #ef4444;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.5rem;
+        }
+        
+        article h3 {
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
         }
         
         article p {
             margin-bottom: 1rem;
             line-height: 1.8;
+            font-size: 1rem;
         }
         
         article ul {
-            margin-left: 2rem;
+            margin-left: 1.25rem;
             margin-bottom: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            article h2 {
+                margin-top: 2rem;
+                margin-bottom: 1rem;
+                font-size: 1.875rem;
+            }
+            article h3 {
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+                font-size: 1.5rem;
+            }
+            article p {
+                font-size: 1.125rem;
+            }
+            article ul {
+                margin-left: 2rem;
+            }
         }
         
         article li {
@@ -89,46 +116,49 @@
     </div>
     
     <!-- Navbar -->
-    <nav class="navbar fixed top-0 w-full z-50 py-4">
+    <nav class="navbar fixed top-0 w-full z-50 py-3 md:py-4">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center">
-                    <img src="https://www.alvorya.com.br/assets/images/min/Logo.png" alt="Alvorya Logo" onerror="this.onerror=null; this.src='../../assets/images/min/Logo.png'" class="w-12 h-12">
+                <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-800 flex items-center justify-center">
+                    <img src="https://www.alvorya.com.br/assets/images/min/Logo.png" alt="Alvorya Logo" onerror="this.onerror=null; this.src='../../assets/images/min/Logo.png'" class="w-10 h-10 md:w-12 md:h-12">
                 </div>
-                <span class="text-xl font-bold">alvorya <span class="text-red-500">blog</span></span>
+                <span class="text-lg md:text-xl font-bold">alvorya <span class="text-red-500">blog</span></span>
             </div>
-            <a href="../home.html" class="btn-back px-6 py-2 rounded-full font-semibold">← Voltar ao Blog</a>
+            <a href="../home.html" class="btn-back px-4 py-2 md:px-6 md:py-2 rounded-full font-semibold text-sm md:text-base">
+                <span class="hidden sm:inline">← Voltar ao Blog</span>
+                <span class="sm:hidden">← Blog</span>
+            </a>
         </div>
     </nav>
 
     <!-- Post Header -->
-    <section class="post-header pt-32 pb-16 px-4">
+    <section class="post-header pt-24 md:pt-32 pb-12 md:pb-16 px-4">
         <div class="container mx-auto max-w-4xl">
-            <div class="mb-6">
+            <div class="mb-4 md:mb-6">
                 <span class="tag">Introdução</span>
             </div>
-            <h1 class="text-5xl md:text-6xl font-bold mb-6">O que é Visão Computacional?</h1>
-            <div class="flex items-center space-x-4 text-gray-400">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">O que é Visão Computacional?</h1>
+            <div class="flex flex-wrap items-center gap-2 md:gap-4 text-sm md:text-base text-gray-400">
                 <div class="flex items-center space-x-2">
-                    <div class="w-8 h-8 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center">
-                        <img src="https://www.alvorya.com.br/assets/images/min/Logo-black.png" alt="Alvorya Logo" onerror="this.onerror=null; this.src='../../assets/images/min/Logo-black.png'" class="w-8 h-8" alt="">
+                    <div class="w-7 h-7 md:w-8 md:h-8 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center">
+                        <img src="https://www.alvorya.com.br/assets/images/min/Logo-black.png" alt="Alvorya Logo" onerror="this.onerror=null; this.src='../../assets/images/min/Logo-black.png'" class="w-7 h-7 md:w-8 md:h-8" alt="">
                     </div>
                     <span>Equipe Alvorya</span>
                 </div>
-                <span>•</span>
+                <span class="hidden sm:inline">•</span>
                 <span>15 Nov 2025</span>
-                <span>•</span>
+                <span class="hidden sm:inline">•</span>
                 <span>8 min de leitura</span>
             </div>
         </div>
     </section>
 
     <!-- Post Content -->
-    <section class="py-16 px-4">
+    <section class="py-8 md:py-16 px-4">
         <div class="container mx-auto max-w-4xl">
-            <div class="content-box rounded-2xl p-8 md:p-12">
+            <div class="content-box rounded-xl md:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-12">
                 <article class="prose prose-invert max-w-none">
-                    <p class="text-xl text-gray-300 mb-8">
+                    <p class="text-lg md:text-xl text-gray-300 mb-6 md:mb-8">
                         A visão computacional é uma das áreas mais fascinantes da inteligência artificial, permitindo que máquinas "vejam" e interpretem o mundo visual de maneira similar aos humanos.
                     </p>
 
