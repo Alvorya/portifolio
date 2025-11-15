@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx7lFbygYfe37ZdtiP7-US1evDria7s1Hp8iHmrQqvZps9Bo3xGq5QmYnYjbXd7mEMg/exec';
 
 $(document).ready(function() {
