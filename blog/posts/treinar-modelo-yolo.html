@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como Treinar um Modelo YOLO - Alvorya Blog</title>
+    <meta http-equiv="Content-Security-Policy" 
+      content="default-src 'self'; img-src 'self' https: data:; script-src 'self'; style-src 'self' 'unsafe-inline';">
+    <script type="module" src="./../../main.js"></script>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: linear-gradient(135deg, #1a2332 0%, #0f1419 100%); color: #e2e8f0; }
+        .navbar { backdrop-filter: blur(10px); background: rgba(26, 35, 50, 0.8); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .post-header { background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(147, 51, 234, 0.1) 50%, rgba(59, 130, 246, 0.1) 100%); }
+        .content-box { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .tag { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .btn-back { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); transition: all 0.3s ease; }
+        .btn-back:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4); }
+        article h2 { color: #ef4444; margin-top: 2rem; margin-bottom: 1rem; }
+        article p { margin-bottom: 1rem; line-height: 1.8; }
+        article ul { margin-left: 2rem; margin-bottom: 1rem; }
+        article li { margin-bottom: 0.5rem; line-height: 1.8; }
+        .code-block { background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; }
+        .code-block code { color: #10b981; font-family: 'Courier New', monospace; }
+    </style>
+    <link rel="icon" type="image/png" href="./../../assets/images/min/Logo.png">
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <img src="https://www.alvorya.com.br/assets/images/min/Logo.png" 
+                 alt="Alvorya Vision" 
+                 class="loader-logo"
+                 onerror="this.onerror=null; this.src='./../../assets/images/min/Logo.png'">
+            <div class="loader-spinner"></div>
+            <p class="loader-text">Carregando...</p>
+        </div>
+    </div>
+
+    <nav class="navbar fixed top-0 w-full z-50 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center">
+                    <img src="https://www.alvorya.com.br/assets/images/min/Logo.png" alt="Alvorya Logo" onerror="this.onerror=null; this.src='../../assets/images/min/Logo.png'" class="w-12 h-12">
+                </div>
+                <span class="text-xl font-bold">alvorya <span class="text-red-500">blog</span></span>
+            </div>
+            <a href="../home.html" class="btn-back px-6 py-2 rounded-full font-semibold">← Voltar ao Blog</a>
+        </div>
+    </nav>
+
+    <section class="post-header pt-32 pb-16 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <div class="mb-6"><span class="tag">Tutorial</span></div>
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">Como Treinar um Modelo YOLO para Seu Próprio Dataset</h1>
+            <div class="flex items-center space-x-4 text-gray-400">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center">
+                        <img src="https://www.alvorya.com.br/assets/images/min/Logo-black.png" alt="Alvorya Logo" onerror="this.onerror=null; this.src='../../assets/images/min/Logo-black.png'" class="w-8 h-8" alt="">
+                    </div>
+                    <span>Equipe Alvorya</span>
+                </div>
+                <span>•</span>
+                <span>15 Nov 2025</span>
+                <span>•</span>
+                <span>8 min de leitura</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <div class="content-box rounded-2xl p-8 md:p-12">
+                <article class="prose prose-invert max-w-none">
+                    <p class="text-xl text-gray-300 mb-8">
+                        YOLO (You Only Look Once) é uma das arquiteturas mais populares para detecção de objetos. Neste tutorial prático, você aprenderá a treinar seu próprio modelo YOLO do zero.
+                    </p>
+
+                    <h2>Por que YOLO?</h2>
+                    <p>YOLO oferece vantagens únicas:</p>
+                    <ul>
+                        <li><strong>Velocidade:</strong> Processamento em tempo real (30-60 FPS)</li>
+                        <li><strong>Precisão:</strong> Resultados competitivos com métodos mais lentos</li>
+                        <li><strong>Simplicidade:</strong> Single-stage detector facilita implementação</li>
+                        <li><strong>Comunidade:</strong> Amplo suporte e recursos disponíveis</li>
+                    </ul>
+
+                    <h2>Pré-requisitos</h2>
+                    <ul>
+                        <li>Python 3.8+</li>
+                        <li>PyTorch instalado</li>
+                        <li>GPU NVIDIA recomendada (mas não obrigatória)</li>
+                        <li>Conhecimentos básicos de Python</li>
+                    </ul>
+
+                    <h2>Passo 1: Instalar YOLOv8 (Ultralytics)</h2>
+                    <p>Vamos usar YOLOv8, a versão mais recente e fácil de usar:</p>
+                    <div class="code-block">
+                        <code>pip install ultralytics</code>
+                    </div>
+
+                    <h2>Passo 2: Coletar e Preparar Dados</h2>
+                    <p>Você precisa de um dataset com imagens e anotações. Opções:</p>
+                    <ul>
+                        <li><strong>Coletar próprias imagens:</strong> Tire fotos dos objetos que quer detectar</li>
+                        <li><strong>Datasets públicos:</strong> Kaggle, Roboflow Universe, Open Images</li>
+                        <li><strong>Web scraping:</strong> Coletar imagens da internet (respeite direitos autorais)</li>
+                    </ul>
+                    <p><strong>Quantidade recomendada:</strong> Mínimo 100 imagens por classe, idealmente 500-1000+</p>
+
+                    <h2>Passo 3: Anotar Imagens</h2>
+                    <p>Use ferramentas de anotação para criar bounding boxes:</p>
+                    <ul>
+                        <li><strong>LabelImg:</strong> Ferramenta desktop gratuita</li>
+                        <li><strong>CVAT:</strong> Plataforma web open-source</li>
+                        <li><strong>Roboflow:</strong> Cloud-based com recursos extras</li>
+                        <li><strong>Makesense.ai:</strong> Web, sem cadastro necessário</li>
+                    </ul>
+                    <p>As anotações devem estar no formato YOLO:</p>
+                    <div class="code-block">
+                        <code>
+                            class_id center_x center_y width height<br>
+                            0 0.5 0.5 0.3 0.4
+                        </code>
+                    </div>
+                    <p>Valores normalizados de 0 a 1 relativos ao tamanho da imagem.</p>
+
+                    <h2>Passo 4: Organizar Estrutura de Pastas</h2>
+                    <p>Organize seu dataset assim:</p>
+                    <div class="code-block">
+                        <code>
+                            dataset/<br>
+                            ├── images/<br>
+                            │   ├── train/   # 70-80% das imagens<br>
+                            │   └── val/     # 20-30% das imagens<br>
+                            └── labels/<br>
+                                ├── train/   # Anotações correspondentes<br>
+                                └── val/     # Anotações correspondentes
+                        </code>
+                    </div>
+
+                    <h2>Passo 5: Criar Arquivo de Configuração</h2>
+                    <p>Crie um arquivo <code>dataset.yaml</code>:</p>
+                    <div class="code-block">
+                        <code>
+                            path: /path/to/dataset<br>
+                            train: images/train<br>
+                            val: images/val<br>
+                            <br>
+                            # Classes<br>
+                            names:<br>
+                              0: pessoa<br>
+                              1: carro<br>
+                              2: bicicleta
+                        </code>
+                    </div>
+
+                    <h2>Passo 6: Treinar o Modelo</h2>
+                    <p>Com apenas algumas linhas de código Python:</p>
+                    <div class="code-block">
+                        <code>
+                            from ultralytics import YOLO<br>
+                            <br>
+                            # Carregar modelo pré-treinado<br>
+                            model = YOLO('yolov8n.pt')  # n, s, m, l, x (tamanhos)<br>
+                            <br>
+                            # Treinar<br>
+                            results = model.train(<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;data='dataset.yaml',<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;epochs=100,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;imgsz=640,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;batch=16,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;name='meu_modelo'<br>
+                            )
+                        </code>
+                    </div>
+
+                    <h2>Hiperparâmetros Importantes</h2>
+                    <ul>
+                        <li><strong>epochs:</strong> Número de vezes que o modelo vê todo o dataset (50-300)</li>
+                        <li><strong>imgsz:</strong> Tamanho da imagem (320, 640, 1280) - maior = mais lento mas mais preciso</li>
+                        <li><strong>batch:</strong> Número de imagens processadas por vez (depende da GPU)</li>
+                        <li><strong>lr0:</strong> Learning rate inicial (default 0.01 geralmente funciona)</li>
+                        <li><strong>patience:</strong> Early stopping - para se não melhorar (default 50)</li>
+                    </ul>
+
+                    <h2>Passo 7: Monitorar Treinamento</h2>
+                    <p>Durante o treinamento, monitore métricas:</p>
+                    <ul>
+                        <li><strong>Loss:</strong> Deve diminuir consistentemente</li>
+                        <li><strong>mAP (mean Average Precision):</strong> Deve aumentar</li>
+                        <li><strong>Precision e Recall:</strong> Equilíbrio entre falsos positivos/negativos</li>
+                    </ul>
+                    <p>Resultados são salvos em <code>runs/detect/meu_modelo/</code> incluindo gráficos e métricas.</p>
+
+                    <h2>Passo 8: Validar o Modelo</h2>
+                    <div class="code-block">
+                        <code>
+                            # Validar<br>
+                            metrics = model.val()<br>
+                            <br>
+                            print(f"mAP50: {metrics.box.map50}")<br>
+                            print(f"mAP50-95: {metrics.box.map}")
+                        </code>
+                    </div>
+
+                    <h2>Passo 9: Testar Inferência</h2>
+                    <div class="code-block">
+                        <code>
+                            # Inferência em imagem<br>
+                            results = model('path/to/image.jpg')<br>
+                            results[0].show()  # Mostrar resultado<br>
+                            <br>
+                            # Inferência em vídeo<br>
+                            results = model('path/to/video.mp4', stream=True)<br>
+                            for r in results:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;r.show()
+                        </code>
+                    </div>
+
+                    <h2>Passo 10: Exportar Modelo</h2>
+                    <p>Para produção, exporte para formatos otimizados:</p>
+                    <div class="code-block">
+                        <code>
+                            # ONNX (mais compatível)<br>
+                            model.export(format='onnx')<br>
+                            <br>
+                            # TensorRT (NVIDIA, mais rápido)<br>
+                            model.export(format='engine')<br>
+                            <br>
+                            # CoreML (iOS)<br>
+                            model.export(format='coreml')
+                        </code>
+                    </div>
+
+                    <h2>Dicas para Melhorar Resultados</h2>
+                    
+                    <h3>Data Augmentation</h3>
+                    <p>YOLO já aplica augmentations automaticamente, mas você pode ajustar:</p>
+                    <ul>
+                        <li>Flip horizontal/vertical</li>
+                        <li>Rotação</li>
+                        <li>Ajustes de cor (HSV)</li>
+                        <li>Mosaic (combina 4 imagens)</li>
+                    </ul>
+
+                    <h3>Transfer Learning</h3>
+                    <p>Sempre comece com modelo pré-treinado (ex: yolov8n.pt) - acelera treinamento e melhora resultados.</p>
+
+                    <h3>Balanceamento de Classes</h3>
+                    <p>Garanta que todas as classes tenham quantidade similar de exemplos.</p>
+
+                    <h3>Qualidade sobre Quantidade</h3>
+                    <p>Anotações precisas são mais importantes que grande volume de dados imprecisos.</p>
+
+                    <h3>Variedade nas Imagens</h3>
+                    <ul>
+                        <li>Diferentes iluminações</li>
+                        <li>Ângulos variados</li>
+                        <li>Backgrounds diversos</li>
+                        <li>Escalas diferentes (perto/longe)</li>
+                    </ul>
+
+                    <h2>Troubleshooting Comum</h2>
+                    
+                    <h3>Overfitting</h3>
+                    <p>Sintomas: Loss de treino baixo mas validação alto</p>
+                    <ul>
+                        <li>Mais data augmentation</li>
+                        <li>Mais dados de treinamento</li>
+                        <li>Dropout aumentado</li>
+                        <li>Early stopping</li>
+                    </ul>
+
+                    <h3>Underfitting</h3>
+                    <p>Sintomas: Loss de treino e validação ambos altos</p>
+                    <ul>
+                        <li>Modelo maior (yolov8m ou yolov8l)</li>
+                        <li>Mais epochs</li>
+                        <li>Learning rate ajustado</li>
+                    </ul>
+
+                    <h3>Memória Insuficiente</h3>
+                    <ul>
+                        <li>Reduzir batch size</li>
+                        <li>Usar modelo menor (yolov8n)</li>
+                        <li>Reduzir imgsz (ex: 640 → 416)</li>
+                    </ul>
+
+                    <h2>Próximos Passos</h2>
+                    <ul>
+                        <li>Experimentar com YOLOv8-seg para segmentação</li>
+                        <li>Implementar tracking (rastrear objetos em vídeo)</li>
+                        <li>Otimizar para edge devices (Raspberry Pi, Jetson)</li>
+                        <li>Integrar com aplicações web/mobile</li>
+                        <li>Explorar YOLOv8-pose para detecção de pose humana</li>
+                    </ul>
+
+                    <h2>Recursos Úteis</h2>
+                    <ul>
+                        <li><strong>Documentação Ultralytics:</strong> docs.ultralytics.com</li>
+                        <li><strong>Roboflow:</strong> Datasets e tutoriais</li>
+                        <li><strong>Papers With Code:</strong> Comparar modelos</li>
+                        <li><strong>YouTube:</strong> Inúmeros tutoriais em vídeo</li>
+                    </ul>
+
+                    <h2>Conclusão</h2>
+                    <p>
+                        Treinar um modelo YOLO customizado é surpreendentemente acessível com as ferramentas modernas. Com dados de qualidade e algumas horas de treinamento, você pode ter um detector de objetos funcional para sua aplicação específica.
+                    </p>
+                    <p>
+                        A chave é iterar: treine, avalie, ajuste e retreine. Com paciência e experimentação, você alcançará resultados excelentes!
+                    </p>
+                </article>
+            </div>
+            <div class="mt-12 flex justify-center">
+                <a href="../home.html" class="btn-back px-8 py-3 rounded-full font-semibold">← Voltar para todos os artigos</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-4 border-t border-gray-800 mt-20">
+        <div class="container mx-auto max-w-6xl text-center">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center">
+                    <img src="https://www.alvorya.com.br/assets/images/min/Logo.png" alt="Alvorya Logo" onerror="this.onerror=null; this.src='../../assets/images/min/Logo.png'" class="w-12 h-12">
+                </div>
+                <span class="text-lg font-bold">alvorya <span class="text-red-500">blog</span></span>
+            </div>
+            <p class="text-gray-400 text-sm">Insights e inovação em tecnologia e IA</p>
+            <p class="text-gray-500 text-sm mt-4">&copy; 2025 Alvorya Blog. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

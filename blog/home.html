@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alvorya Blog - Insights sobre IA e Tecnologia</title>
+    <meta http-equiv="Content-Security-Policy"
+      content="
+      default-src 'self';
+      script-src 'self' https://apis.google.com https://script.google.com https://script.googleusercontent.com 'unsafe-inline' 'unsafe-eval';
+      connect-src 'self' https://script.google.com https://script.googleusercontent.com;
+      img-src 'self' https: data:;
+      style-src 'self' 'unsafe-inline';
+      frame-src https://script.google.com;">
+
+    <script type="module" src="./../main.js"></script>
+    <style>
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2332 0%, #0f1419 100%);
+            color: #e2e8f0;
+        }
+        
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(26, 35, 50, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(147, 51, 234, 0.1) 50%, rgba(59, 130, 246, 0.1) 100%);
+        }
+        
+        .card-blog {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card-blog:hover {
+            transform: translateY(-8px);
+            border-color: rgba(239, 68, 68, 0.5);
+            box-shadow: 0 20px 40px rgba(239, 68, 68, 0.2);
+        }
+        
+        .tag {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+        }
+        
+        .orbit-animation {
+            animation: orbit 20s linear infinite;
+        }
+        
+        @keyframes orbit {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .featured-badge {
+            background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+        }
+        
+        .search-box {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-box:focus {
+            border-color: rgba(239, 68, 68, 0.5);
+            outline: none;
+        }
+    </style>
+    <link rel="icon" type="image/png" href="./../assets/images/min/Logo.png">
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <img src="https://www.alvorya.com.br/assets/images/min/Logo.png" 
+                 alt="Alvorya Vision" 
+                 class="loader-logo"
+                 onerror="this.onerror=null; this.src='./../assets/images/min/Logo.png'">
+            <div class="loader-spinner"></div>
+            <p class="loader-text">Carregando...</p>
+        </div>
+    </div>
+    
+    <div id="notification" class="notification"></div>
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 w-full z-50 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center">
+                    <img src="https://www.alvorya.com.br/assets/images/min/Logo.png" alt="Alvorya Vision Logo" onerror="this.onerror=null; this.src='assets/images/min/Logo.png'" alt="Alvorya Logo" class="w-12 h-12 text-white">
+                </div>
+                <span class="text-xl font-bold">alvorya <span class="text-red-500">blog</span></span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#hero-section" class="hover:text-red-500 transition">Início</a>
+                <a href="#articles" class="hover:text-red-500 transition">Artigos</a>
+                <a href="../about.html" class="hover:text-red-500 transition">Sobre</a>
+                <a href="../index.html#contact" class="hover:text-red-500 transition">Contato</a>
+            </div>
+            <button class="md:hidden text-white" id="menuBtn">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="fixed top-16 right-0 w-64 h-screen bg-slate-900 transform translate-x-full transition-transform duration-300 z-40 md:hidden">
+        <div class="flex flex-col p-6 space-y-4">
+            <a href="#hero-section" class="hover:text-red-500 transition">Início</a>
+            <a href="#articles" class="hover:text-red-500 transition">Artigos</a>
+            <a href="../about.html" class="hover:text-red-500 transition">Sobre</a>
+            <a href="../index.html#contact" class="hover:text-red-500 transition">Contato</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero-section" class="pt-32 pb-20 px-4 hero-gradient">
+        <div class="container mx-auto text-center max-w-4xl">
+            <div class="relative inline-block mb-8">
+                <div class="orbit-animation absolute inset-0 flex items-center justify-center">
+                    <div class="w-32 h-32 border-2 border-dashed border-blue-500 rounded-full"></div>
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-24 h-24 border-2 border-dashed border-red-500 rounded-full" style="animation: orbit 15s linear infinite reverse;"></div>
+                </div>
+                <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-purple-600 rounded-full flex items-center justify-center">
+                    <img src="https://www.alvorya.com.br/assets/images/min/Logo-black.png" alt="Alvorya Vision Logo" onerror="this.onerror=null; this.src='assets/images/min/Logo.png'" alt="Alvorya Logo" class="w-20 h-20 text-white">
+                </div>
+            </div>
+            
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                ALVORYA BLOG: <br>
+                <span class="text-red-500">INSIGHTS</span> E <span class="text-red-500">INOVAÇÃO</span>
+            </h1>
+            <p class="text-xl text-gray-300 mb-8">
+                Explore o futuro da tecnologia com IA, automação e organização inteligente
+            </p>
+            
+            <!-- Search Bar -->
+            <div class="max-w-2xl mx-auto">
+                <input type="text" placeholder="Buscar artigos..." class="search-box w-full px-6 py-4 rounded-full text-white">
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Post -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl font-bold mb-8 flex items-center">
+                <span class="text-red-500">Destaque</span>
+                <span class="ml-2">da Semana</span>
+            </h2>
+            
+            <div class="card-blog rounded-2xl overflow-hidden">
+                <div class="grid md:grid-cols-2 gap-0">
+                    <div class="h-64 md:h-auto bg-gradient-to-br from-red-500 via-purple-500 to-blue-500 flex items-center justify-center">
+                        <img src="https://www.alvorya.com.br/assets/images/min/Logo.png" alt="Alvorya Vision Logo" onerror="this.onerror=null; this.src='assets/images/min/Logo.png'" alt="Alvorya Logo" class="w-12 h-12 text-white">
+
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <span class="featured-badge text-white px-3 py-1 rounded-full text-sm font-semibold">DESTAQUE</span>
+                            <span class="tag">Introdução</span>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-4">O que é Visão Computacional?</h3>
+                        <p class="text-gray-400 mb-6">Uma introdução completa sobre como máquinas interpretam imagens e vídeos. Descubra as tecnologias fundamentais por trás dessa revolução tecnológica que está transformando diversos setores.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full"></div>
+                                <div>
+                                    <p class="font-semibold text-sm">Equipe Alvorya</p>
+                                    <p class="text-gray-500 text-xs">15 Nov 2025 • 8 min</p>
+                                </div>
+                            </div>
+                            <a href="posts/o-que-e-visao-computacional.html" class="btn-primary px-6 py-2 rounded-full font-semibold">Ler Mais</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="py-16 px-4" id="articles">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold">
+                    <span class="text-red-500">Últimos</span> Artigos
+                </h2>
+                <div class="flex space-x-2">
+                    <button class="px-4 py-2 bg-red-500 rounded-full text-sm font-semibold">Todos</button>
+                    <button class="px-4 py-2 bg-slate-700 rounded-full text-sm font-semibold hover:bg-slate-600 transition">IA</button>
+                    <button class="px-4 py-2 bg-slate-700 rounded-full text-sm font-semibold hover:bg-slate-600 transition">Tecnologia</button>
+                </div>
+            </div>
+            
+            <div id="blog-posts-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Posts will be dynamically loaded here -->
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-12">
+                <button class="btn-primary px-8 py-3 rounded-full font-semibold">Carregar Mais Artigos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-20 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <div class="card-blog rounded-2xl p-12 text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-bold mb-4">Assine Nossa <span class="text-red-500">Newsletter</span></h2>
+                <p class="text-gray-400 mb-8">Receba insights exclusivos sobre IA, tecnologia e inovação diretamente no seu email</p>
+                <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                    <input type="email" placeholder="seu@email.com" class="search-box flex-1 px-6 py-3 rounded-full text-white">
+                    <button class="btn-primary px-8 py-3 rounded-full font-semibold whitespace-nowrap">Inscrever-se</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-gray-800">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center">
+                            <img src="https://www.alvorya.com.br/assets/images/min/Logo.png" alt="Alvorya Vision Logo" onerror="this.onerror=null; this.src='assets/images/min/Logo.png'" alt="Alvorya Logo" class="w-12 h-12 text-white">
+                        </div>
+                        <span class="text-lg font-bold">alvorya <span class="text-red-500">blog</span></span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Insights e inovação em tecnologia e IA</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Blog</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#articles" class="hover:text-red-500 transition">Todos os Artigos</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Empresa</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="../about.html" class="hover:text-red-500 transition">Sobre Nós</a></li>
+                        <li><a href="../index.html#contact" class="hover:text-red-500 transition">Contato</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Redes Sociais</h4>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-red-500 transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-red-500 transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-red-500 transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; 2025 Alvorya Blog. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        // Array de posts do blog
+        const blogPosts = [
+            {
+                title: "O que é Visão Computacional?",
+                description: "Uma introdução completa sobre como máquinas interpretam imagens e vídeos, e as tecnologias por trás dessa revolução.",
+                tag: "Introdução",
+                date: "15 Nov 2025",
+                readTime: "8 min",
+                url: "posts/o-que-e-visao-computacional.html",
+                gradient: "from-blue-500 to-cyan-500",
+                icon: "M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+            },
+            {
+                title: "Machine Learning e Visão Computacional Moderna",
+                description: "Descubra como redes neurais e deep learning transformaram completamente o campo da visão computacional.",
+                tag: "IA",
+                date: "14 Nov 2025",
+                readTime: "10 min",
+                url: "posts/machine-learning-visao-computacional.html",
+                gradient: "from-purple-500 to-pink-500",
+                icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+            },
+            {
+                title: "Visão Computacional na Agricultura de Precisão",
+                description: "Como detectar pragas, analisar solo e otimizar culturas com IA e câmeras inteligentes.",
+                tag: "Agricultura",
+                date: "13 Nov 2025",
+                readTime: "9 min",
+                url: "posts/visao-computacional-agricultura.html",
+                gradient: "from-green-500 to-emerald-500",
+                icon: "M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
+            },
+            {
+                title: "Reconhecimento Facial: Como Funciona e Onde é Usado",
+                description: "Entenda as técnicas por trás do reconhecimento facial, suas aplicações e questões éticas importantes.",
+                tag: "Segurança",
+                date: "12 Nov 2025",
+                readTime: "11 min",
+                url: "posts/reconhecimento-facial.html",
+                gradient: "from-red-500 to-orange-500",
+                icon: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            },
+            {
+                title: "Segmentação vs. Detecção de Objetos",
+                description: "Conheça as diferenças entre essas técnicas fundamentais e quando usar cada uma delas.",
+                tag: "Análise",
+                date: "11 Nov 2025",
+                readTime: "7 min",
+                url: "posts/segmentacao-vs-deteccao.html",
+                gradient: "from-indigo-500 to-blue-500",
+                icon: "M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5z M4 14a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1v-7z"
+            },
+            {
+                title: "Como Treinar um Modelo YOLO para Seu Próprio Dataset",
+                description: "Tutorial prático passo a passo para criar seu detector de objetos customizado com YOLOv8.",
+                tag: "Tutorial",
+                date: "10 Nov 2025",
+                readTime: "12 min",
+                url: "posts/treinar-modelo-yolo.html",
+                gradient: "from-yellow-500 to-orange-500",
+                icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+            },
+            {
+                title: "OpenCV para Pré-processamento de Imagens",
+                description: "Aprenda técnicas essenciais de processamento: resize, blur, threshold, equalização e mais.",
+                tag: "Tutorial",
+                date: "09 Nov 2025",
+                readTime: "10 min",
+                url: "posts/opencv-preprocessamento.html",
+                gradient: "from-cyan-500 to-blue-500",
+                icon: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+            },
+            {
+                title: "Visão Computacional no Varejo",
+                description: "Contagem de pessoas, heatmaps, análise de comportamento e checkout automático com computer vision.",
+                tag: "Varejo",
+                date: "08 Nov 2025",
+                readTime: "9 min",
+                url: "posts/visao-computacional-varejo.html",
+                gradient: "from-pink-500 to-rose-500",
+                icon: "M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+            },
+            {
+                title: "Edge AI: Visão Computacional em Dispositivos Pequenos",
+                description: "Rodando modelos sofisticados em Raspberry Pi, Jetson Nano e outros edge devices com Linux e Docker.",
+                tag: "Edge AI",
+                date: "07 Nov 2025",
+                readTime: "11 min",
+                url: "posts/edge-ai-visao-computacional.html",
+                gradient: "from-teal-500 to-green-500",
+                icon: "M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+            },
+            {
+                title: "Os Maiores Desafios da Visão Computacional",
+                description: "Iluminação, ângulos, privacidade, datasets, viés, performance e outros obstáculos técnicos e éticos.",
+                tag: "Análise",
+                date: "06 Nov 2025",
+                readTime: "13 min",
+                url: "posts/desafios-visao-computacional.html",
+                gradient: "from-red-500 to-purple-500",
+                icon: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+            }
+        ];
+
+         // Função para mostrar notificações
+         function showNotification(message, type = 'success') {
+            const notification = document.querySelector('.notification');
+            notification.textContent = message;
+
+            // Define a cor de acordo com o tipo
+            notification.style.backgroundColor = type === 'error' ? '#ef4444' : '#22c55e';
+
+            // Mostra a notificação
+            notification.classList.remove('hide');
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+                notification.classList.add('hide');
+            }, 3000)
+        };
+
+        $(document).ready(function() {
+            let currentPage = 1;
+            const postsPerPage = 6;
+            let filteredPosts = [...blogPosts];
+
+            // Função para renderizar posts
+            function renderPosts() {
+                const start = 0;
+                const end = currentPage * postsPerPage;
+                const postsToShow = filteredPosts.slice(start, end);
+                
+                $('#blog-posts-grid').empty();
+                
+                postsToShow.forEach(post => {
+                    const card = `
+                        <div class="card-blog rounded-2xl overflow-hidden" style="opacity: 0; transform: translateY(30px);">
+                            <div class="h-48 bg-gradient-to-br ${post.gradient} flex items-center justify-center">
+                                <svg class="w-20 h-20 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="${post.icon}"></path>
+                                </svg>
+                            </div>
+                            <div class="p-6">
+                                <span class="tag mb-3 inline-block">${post.tag}</span>
+                                <h3 class="text-xl font-bold mb-3">${post.title}</h3>
+                                <p class="text-gray-400 text-sm mb-4">${post.description}</p>
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-gray-500">${post.date} • ${post.readTime}</span>
+                                    <a href="${post.url}" class="text-red-500 font-semibold hover:underline">Ler →</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    $('#blog-posts-grid').append(card);
+                });
+
+                // Animar cards
+                setTimeout(() => {
+                    $('.card-blog').css({
+                        'opacity': '1',
+                        'transform': 'translateY(0)',
+                        'transition': 'all 0.6s ease'
+                    });
+                }, 100);
+
+                // Mostrar/esconder botão "Carregar Mais"
+                if (end >= filteredPosts.length) {
+                    $('button:contains("Carregar Mais")').hide();
+                } else {
+                    $('button:contains("Carregar Mais")').show();
+                }
+            }
+
+            // Inicializar
+            renderPosts();
+
+            // Mobile menu toggle
+            $('#menuBtn').click(function() {
+                $('#mobileMenu').toggleClass('translate-x-full');
+            });
+
+            // Close mobile menu when clicking outside
+            $(document).click(function(event) {
+                if (!$(event.target).closest('#menuBtn, #mobileMenu').length) {
+                    $('#mobileMenu').addClass('translate-x-full');
+                }
+            });
+
+            // Smooth scroll for anchor links
+            $('a[href^="#"]').click(function(e) {
+                e.preventDefault();
+                var target = $(this).attr('href');
+                if (target !== '#') {
+                    $('html, body').animate({
+                        scrollTop: $(target).offset().top - 80
+                    }, 800);
+                }
+            });
+
+            // Search functionality
+            $('.search-box').on('input', function() {
+                var searchTerm = $(this).val().toLowerCase();
+                if (searchTerm.length > 0) {
+                    filteredPosts = blogPosts.filter(post => 
+                        post.title.toLowerCase().includes(searchTerm) ||
+                        post.description.toLowerCase().includes(searchTerm) ||
+                        post.tag.toLowerCase().includes(searchTerm)
+                    );
+                } else {
+                    filteredPosts = [...blogPosts];
+                }
+                currentPage = 1;
+                renderPosts();
+            });
+
+            // Category filter
+            $('.flex.space-x-2 button').click(function() {
+                $('.flex.space-x-2 button').removeClass('bg-red-500').addClass('bg-slate-700');
+                $(this).removeClass('bg-slate-700').addClass('bg-red-500');
+                
+                const category = $(this).text().trim();
+                if (category === 'Todos') {
+                    filteredPosts = [...blogPosts];
+                } else {
+                    filteredPosts = blogPosts.filter(post => 
+                        post.tag.toLowerCase() === category.toLowerCase()
+                    );
+                }
+                currentPage = 1;
+                renderPosts();
+            });
+
+          
+          
+
+            // Load more functionality
+            $('button:contains("Carregar Mais")').click(function() {
+                currentPage++;
+                const btn = $(this);
+                btn.html('<svg class="animate-spin h-5 w-5 inline-block mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Carregando...');
+                
+                setTimeout(() => {
+                    renderPosts();
+                    btn.text('Carregar Mais Artigos');
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - Alvorya Vision | Organização Inteligente de Software</title>
+    <link rel="icon" type="image/png" href="/assets/images/min/Logo.png">
+    <meta name="description" content="Conheça a Alvorya Vision - Pioneiros em soluções de organização inteligente de software impulsionadas por IA">
+    <meta http-equiv="Content-Security-Policy"
+      content="
+      default-src 'self';
+      script-src 'self' https://apis.google.com https://script.google.com https://script.googleusercontent.com 'unsafe-inline' 'unsafe-eval';
+      connect-src 'self' https://script.google.com https://script.googleusercontent.com;
+      img-src 'self' https: data:;
+      style-src 'self' 'unsafe-inline';
+      frame-src https://script.google.com;">
+
+    <script type="module" src="/main.js"></script>
+</head>
+<body class="bg-slate-900 text-white">
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <img src="https://www.alvorya.com.br/assets/images/min/Logo.png" 
+                 alt="Alvorya Vision" 
+                 class="loader-logo"
+                 onerror="this.onerror=null; this.src='assets/images/min/Logo.png'">
+            <div class="loader-spinner"></div>
+            <p class="loader-text">Carregando...</p>
+        </div>
+    </div>
+    
+    <div id="notification" class="notification"></div>
+    
+    <!-- Navegação -->
+    <nav class="fixed w-full z-50 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-br bg-slate-800 rounded-full flex items-center justify-center">
+                        <img class="w-12 h-12 text-white" src="https://www.alvorya.com.br/assets/images/min/Logo.png" alt="Alvorya Vision Logo" onerror="this.onerror=null; this.src='assets/images/min/Logo.png'">
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">alvorya <span class="text-red-500">vision</span></h1>
+                    </div>
+                </div>
+                
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/index.html#home" class="hover:text-red-500 transition nav-link">Início</a>
+                    <a href="/index.html#features" class="hover:text-red-500 transition nav-link">Recursos</a>
+                    <a href="/index.html#solutions" class="hover:text-red-500 transition nav-link">Soluções</a>
+                    <a href="/index.html#portfolio" class="hover:text-red-500 transition nav-link">Portfólio</a>
+                    <a href="/blog/home.html" class="hover:text-red-500 transition nav-link">Blog</a>
+                    <a href="/about.html" class="text-red-500 transition nav-link">Sobre</a>
+                    <a href="/index.html#contact" class="hover:text-red-500 transition nav-link">Contato</a>
+                </div>
+                
+                <!-- Botão Menu Mobile -->
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Menu Mobile -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="/index.html#home" class="block py-2 hover:text-red-500 transition nav-link">Início</a>
+                <a href="/index.html#features" class="block py-2 hover:text-red-500 transition nav-link">Recursos</a>
+                <a href="/index.html#solutions" class="block py-2 hover:text-red-500 transition nav-link">Soluções</a>
+                <a href="/index.html#portfolio" class="block py-2 hover:text-red-500 transition nav-link">Portfólio</a>
+                <a href="/blog/home.html" class="block py-2 hover:text-red-500 transition nav-link">Blog</a>
+                <a href="/about.html" class="block py-2 text-red-500 transition nav-link">Sobre</a>
+                <a href="/index.html#contact" class="block py-2 hover:text-red-500 transition nav-link">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen gradient-bg pt-32 pb-20 relative overflow-hidden">
+        <!-- Elementos de Fundo Animados -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 right-20 w-64 h-64 bg-red-500/10 rounded-full blur-3xl pulse-glow"></div>
+            <div class="absolute bottom-20 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pulse-glow"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+                    SOBRE A <span class="text-red-500">ALVORYA VISION</span>
+                </h2>
+                <div class="w-32 h-1 bg-gradient-to-r from-red-500 to-pink-500 mx-auto mb-8"></div>
+                <p class="text-xl md:text-2xl text-slate-300 leading-relaxed">
+                    Transformamos a complexidade em clareza através de soluções inteligentes de organização de software
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossa História -->
+    <section class="py-20 bg-slate-800/50">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h3 class="text-4xl font-bold">
+                        NOSSA <span class="text-red-500">HISTÓRIA</span>
+                    </h3>
+                    <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-pink-500"></div>
+                    <p class="text-slate-300 text-lg leading-relaxed">
+                        Fundada com a visão de revolucionar a forma como as organizações gerenciam seus projetos de software, a Alvorya Vision nasceu da necessidade de trazer ordem ao caos do desenvolvimento moderno.
+                    </p>
+                    <p class="text-slate-300 text-lg leading-relaxed">
+                        Combinamos expertise em inteligência artificial, visão computacional e gestão de projetos para criar soluções que não apenas organizam, mas antecipam necessidades e otimizam fluxos de trabalho.
+                    </p>
+                    <p class="text-slate-300 text-lg leading-relaxed">
+                        Nossa jornada começou com uma simples pergunta: "Como podemos tornar o desenvolvimento de software mais eficiente e inteligente?" A resposta nos levou a desenvolver uma plataforma única que aprende com cada projeto.
+                    </p>
+                </div>
+                
+                <div class="relative">
+                    <div class="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="absolute inset-0 bg-gradient-to-br from-red-500/20 to-purple-500/20 backdrop-blur-sm flex items-center justify-center">
+                            <div class="text-center space-y-4">
+                                <svg class="w-32 h-32 mx-auto text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                </svg>
+                                <h4 class="text-3xl font-bold">2025</h4>
+                                <p class="text-xl text-slate-300">Ano de Fundação</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossa Missão, Visão e Valores -->
+    <section class="py-20 gradient-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-bold mb-4">
+                    NOSSOS <span class="text-red-500">PILARES</span>
+                </h3>
+                <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-pink-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Missão -->
+                <div class="bg-slate-800/50 backdrop-blur-sm p-10 rounded-2xl border border-slate-700 card-hover">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-center">MISSÃO</h4>
+                    <p class="text-slate-300 text-center leading-relaxed">
+                        Empoderar organizações com soluções inteligentes que transformam complexidade em clareza, permitindo que equipes foquem no que realmente importa: criar software excepcional.
+                    </p>
+                </div>
+                
+                <!-- Visão -->
+                <div class="bg-slate-800/50 backdrop-blur-sm p-10 rounded-2xl border border-slate-700 card-hover">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-center">VISÃO</h4>
+                    <p class="text-slate-300 text-center leading-relaxed">
+                        Ser a plataforma líder global em organização inteligente de software, reconhecida por revolucionar a forma como projetos são gerenciados e executados através da IA.
+                    </p>
+                </div>
+                
+                <!-- Valores -->
+                <div class="bg-slate-800/50 backdrop-blur-sm p-10 rounded-2xl border border-slate-700 card-hover">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-center">VALORES</h4>
+                    <p class="text-slate-300 text-center leading-relaxed">
+                        Inovação contínua, excelência técnica, transparência total, foco no cliente e compromisso inabalável com a qualidade em cada linha de código.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossa Expertise -->
+    <section class="py-20 bg-slate-800/50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-bold mb-4">
+                    NOSSA <span class="text-red-500">EXPERTISE</span>
+                </h3>
+                <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-pink-500 mx-auto mb-4"></div>
+                <p class="text-slate-400 max-w-2xl mx-auto text-lg">
+                    Dominamos as tecnologias mais avançadas para entregar soluções que fazem a diferença
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Inteligência Artificial -->
+                <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-red-500 transition text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-pink-500 rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Inteligência Artificial</h4>
+                    <p class="text-slate-400">Machine Learning e Deep Learning aplicados</p>
+                </div>
+                
+                <!-- Visão Computacional -->
+                <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-blue-500 transition text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Visão Computacional</h4>
+                    <p class="text-slate-400">Processamento e análise avançada de imagens</p>
+                </div>
+                
+                <!-- Análise de Dados -->
+                <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-purple-500 transition text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Análise de Dados</h4>
+                    <p class="text-slate-400">Business Intelligence e Analytics</p>
+                </div>
+                
+                <!-- Cloud Computing -->
+                <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Cloud Computing</h4>
+                    <p class="text-slate-400">Infraestrutura escalável e segura</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estatísticas -->
+    <section class="py-20 gradient-bg hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-bold mb-4">
+                    NOSSO <span class="text-red-500">IMPACTO</span>
+                </h3>
+                <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-pink-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-red-500 mb-2">500+</div>
+                    <p class="text-xl text-slate-300">Projetos Concluídos</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-blue-500 mb-2">98%</div>
+                    <p class="text-xl text-slate-300">Satisfação do Cliente</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-purple-500 mb-2">150+</div>
+                    <p class="text-xl text-slate-300">Empresas Atendidas</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-cyan-500 mb-2">24/7</div>
+                    <p class="text-xl text-slate-300">Suporte Disponível</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossa Equipe -->
+    <section class="py-20 bg-slate-800/50 hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-bold mb-4">
+                    NOSSA <span class="text-red-500">EQUIPE</span>
+                </h3>
+                <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-pink-500 mx-auto mb-4"></div>
+                <p class="text-slate-400 max-w-2xl mx-auto text-lg">
+                    Profissionais apaixonados por tecnologia e inovação
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Team Member 1 -->
+                <div class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden hover:border-red-500 transition group">
+                    <div class="h-64 bg-gradient-to-br from-red-500/20 to-pink-500/20 flex items-center justify-center">
+                        <div class="w-32 h-32 bg-slate-700 rounded-full flex items-center justify-center">
+                            <svg class="w-16 h-16 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-xl font-bold mb-2">CEO & Fundador</h4>
+                        <p class="text-red-500 mb-3">Estratégia & Visão</p>
+                        <p class="text-slate-400 text-sm">Especialista em IA e transformação digital</p>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden hover:border-blue-500 transition group">
+                    <div class="h-64 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
+                        <div class="w-32 h-32 bg-slate-700 rounded-full flex items-center justify-center">
+                            <svg class="w-16 h-16 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-xl font-bold mb-2">CTO</h4>
+                        <p class="text-blue-500 mb-3">Tecnologia & Inovação</p>
+                        <p class="text-slate-400 text-sm">Arquiteto de soluções em nuvem e IA</p>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden hover:border-purple-500 transition group">
+                    <div class="h-64 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
+                        <div class="w-32 h-32 bg-slate-700 rounded-full flex items-center justify-center">
+                            <svg class="w-16 h-16 text-purple-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-xl font-bold mb-2">Head of AI</h4>
+                        <p class="text-purple-500 mb-3">Inteligência Artificial</p>
+                        <p class="text-slate-400 text-sm">PhD em Machine Learning e Visão Computacional</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section class="py-20 gradient-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-bold mb-4">
+                    NOSSOS <span class="text-red-500">DIFERENCIAIS</span>
+                </h3>
+                <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-pink-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="flex space-x-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">Tecnologia de Ponta</h4>
+                        <p class="text-slate-400">Utilizamos as tecnologias mais avançadas e atualizadas do mercado</p>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">Suporte Personalizado</h4>
+                        <p class="text-slate-400">Atendimento dedicado e suporte 24/7 para garantir seu sucesso</p>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">Segurança Máxima</h4>
+                        <p class="text-slate-400">Protocolos de segurança de nível empresarial em todas as camadas</p>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-cyan-500 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">Escalabilidade Garantida</h4>
+                        <p class="text-slate-400">Infraestrutura que cresce junto com o seu negócio</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-slate-800/50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h3 class="text-4xl font-bold mb-6">
+                    PRONTO PARA <span class="text-red-500">TRANSFORMAR</span> SEU NEGÓCIO?
+                </h3>
+                <p class="text-xl text-slate-300 mb-8">
+                    Junte-se às centenas de empresas que já confiam na Alvorya Vision
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="/index.html#contact" class="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 shadow-lg hover:shadow-red-500/50">
+                        ENTRE EM CONTATO
+                    </a>
+                    <a href="/index.html#portfolio" class="bg-slate-700 hover:bg-slate-600 px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 border border-slate-600">
+                        VER PORTFÓLIO
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-3 mb-6 md:mb-0">
+                    <div class="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center">
+                        <img
+                            class="w-12 h-12 text-white"
+                            src="https://www.alvorya.com.br/assets/images/min/Logo.png"
+                            alt="Alvorya Vision Logo" onerror="this.onerror=null; this.src='assets/images/min/Logo.png'"
+                        >
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">alvorya <span class="text-red-500">vision</span></h1>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 transition">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 transition">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 transition">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-slate-800 text-center text-slate-400">
+                <p>&copy; 2025 Alvorya Vision. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

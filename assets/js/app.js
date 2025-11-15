@@ -2,6 +2,23 @@ import $ from 'jquery';
 
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx7lFbygYfe37ZdtiP7-US1evDria7s1Hp8iHmrQqvZps9Bo3xGq5QmYnYjbXd7mEMg/exec';
 
+// Page loader - aguarda todos os recursos carregarem
+$(window).on('load', function() {
+    // Pequeno delay para garantir que tudo está renderizado
+    setTimeout(function() {
+        $('#page-loader').addClass('hidden');
+        $('body').addClass('loaded');
+    }, 300);
+});
+
+// Fallback: se demorar mais de 3 segundos, remove o loader
+setTimeout(function() {
+    if (!$('body').hasClass('loaded')) {
+        $('#page-loader').addClass('hidden');
+        $('body').addClass('loaded');
+    }
+}, 3000);
+
 $(document).ready(function() {
     // Toggle do menu mobile
     $('#mobile-menu-btn').click(function() {
@@ -12,13 +29,18 @@ $(document).ready(function() {
     $('.nav-link').click(function(e) {
         e.preventDefault();
         const target = $(this).attr('href');
-        $('html, body').animate({
-            scrollTop: $(target).offset().top - 80
-        }, 800);
-        
-        // Fechar menu mobile após clicar
-        if ($(window).width() < 768) {
-            $('#mobile-menu').slideUp(300);
+        if (/^#/.test(target)) {
+            $('html, body').animate({
+                scrollTop: $(target).offset().top - 80
+            }, 800);
+            
+            // Fechar menu mobile após clicar
+            if ($(window).width() < 768) {
+                $('#mobile-menu').slideUp(300);
+            }
+        }
+        else {
+            window.location = window.location.origin + $(e.target).attr('href');
         }
     });
     
@@ -49,13 +71,6 @@ $(document).ready(function() {
             }
         });
     }, { threshold: 0.1 });
-    
-    // Adicionar classes de animação às seções
-    $('section').addClass('opacity-0 translate-y-10 transition-all duration-1000');
-    
-    document.querySelectorAll('section').forEach((section) => {
-        observer.observe(section);
-    });
     
     // Envio do formulário para Google Sheets
     $('#contactForm').submit(function(e) {
@@ -120,4 +135,45 @@ $(document).ready(function() {
             notification.classList.add('hide');
         }, 3000)
     };
+
+      // Newsletter form
+        $('button:contains("Inscrever-se")').click(function(e) {
+            e.preventDefault();
+            var email = $('input[type="email"]').val();
+            
+            if (!email || !email.includes('@')) {
+                alert('Por favor, insira um email válido.');
+                return;
+            }
+
+            const btn = $(this);
+            const originalText = btn.html();
+            btn.prop('disabled', true).html('<svg class="animate-spin h-5 w-5 inline-block mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Enviando...');
+
+            fetch('https://script.google.com/macros/s/AKfycbxywtfaALh_hIU1aN4SuuLrg79OYZ77Rnj3oPTfjHu5SDdSGrfx04vWa1YguK7kPSUvwQ/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email
+                })
+            })
+            .then(() => {
+                $('input[type="email"]').val('');
+                    // Mostrar notificação de sucesso
+                showNotification('Obrigado por se inscrever! Você receberá nossos melhores conteúdos.', 'success');
+                
+            })
+            .catch((error) => {
+                console.error('Erro:', error);
+                showNotification('Erro ao enviar mensagem. Por favor, tente novamente.', 'error');
+                $('input[type="email"]').val('');
+            })
+            .finally(() => {
+                btn.prop('disabled', false).html(originalText);
+            });
+        });
+
 });

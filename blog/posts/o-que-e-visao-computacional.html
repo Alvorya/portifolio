@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O que é Visão Computacional? - Alvorya Blog</title>
+    <meta http-equiv="Content-Security-Policy" 
+      content="default-src 'self'; img-src 'self' https: data:; script-src 'self'; style-src 'self' 'unsafe-inline';">
+    <script type="module" src="./../../main.js"></script>
+    <style>
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2332 0%, #0f1419 100%);
+            color: #e2e8f0;
+        }
+        
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(26, 35, 50, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .post-header {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(147, 51, 234, 0.1) 50%, rgba(59, 130, 246, 0.1) 100%);
+        }
+        
+        .content-box {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .tag {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .btn-back {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+        }
+        
+        article h2 {
+            color: #ef4444;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        article p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        article ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        article li {
+            margin-bottom: 0.5rem;
+            line-height: 1.8;
+        }
+    </style>
+    <link rel="icon" type="image/png" href="./../../assets/images/min/Logo.png">
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <img src="https://www.alvorya.com.br/assets/images/min/Logo.png" 
+                 alt="Alvorya Vision" 
+                 class="loader-logo"
+                 onerror="this.onerror=null; this.src='./../../assets/images/min/Logo.png'">
+            <div class="loader-spinner"></div>
+            <p class="loader-text">Carregando...</p>
+        </div>
+    </div>
+    
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 w-full z-50 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center">
+                    <img src="https://www.alvorya.com.br/assets/images/min/Logo.png" alt="Alvorya Logo" onerror="this.onerror=null; this.src='../../assets/images/min/Logo.png'" class="w-12 h-12">
+                </div>
+                <span class="text-xl font-bold">alvorya <span class="text-red-500">blog</span></span>
+            </div>
+            <a href="../home.html" class="btn-back px-6 py-2 rounded-full font-semibold">← Voltar ao Blog</a>
+        </div>
+    </nav>
+
+    <!-- Post Header -->
+    <section class="post-header pt-32 pb-16 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <div class="mb-6">
+                <span class="tag">Introdução</span>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">O que é Visão Computacional?</h1>
+            <div class="flex items-center space-x-4 text-gray-400">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center">
+                        <img src="https://www.alvorya.com.br/assets/images/min/Logo-black.png" alt="Alvorya Logo" onerror="this.onerror=null; this.src='../../assets/images/min/Logo-black.png'" class="w-8 h-8" alt="">
+                    </div>
+                    <span>Equipe Alvorya</span>
+                </div>
+                <span>•</span>
+                <span>15 Nov 2025</span>
+                <span>•</span>
+                <span>8 min de leitura</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post Content -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <div class="content-box rounded-2xl p-8 md:p-12">
+                <article class="prose prose-invert max-w-none">
+                    <p class="text-xl text-gray-300 mb-8">
+                        A visão computacional é uma das áreas mais fascinantes da inteligência artificial, permitindo que máquinas "vejam" e interpretem o mundo visual de maneira similar aos humanos.
+                    </p>
+
+                    <h2>Definição e Conceitos Fundamentais</h2>
+                    <p>
+                        Visão Computacional (Computer Vision) é um campo interdisciplinar que permite aos computadores obter compreensão de alto nível a partir de imagens digitais ou vídeos. O objetivo é automatizar tarefas que o sistema visual humano realiza naturalmente.
+                    </p>
+                    <p>
+                        Em essência, a visão computacional busca replicar a complexidade da visão humana, permitindo que máquinas não apenas capturem imagens, mas também as compreendam, interpretem e tomem decisões baseadas nelas.
+                    </p>
+
+                    <h2>Como as Máquinas "Veem"</h2>
+                    <p>
+                        Diferente dos humanos, que processam informações visuais de forma intuitiva, os computadores precisam de algoritmos específicos para interpretar pixels. O processo geralmente envolve:
+                    </p>
+                    <ul>
+                        <li><strong>Aquisição de Imagem:</strong> Captura através de câmeras, sensores ou arquivos digitais</li>
+                        <li><strong>Pré-processamento:</strong> Melhoria da qualidade, remoção de ruído, normalização</li>
+                        <li><strong>Extração de Características:</strong> Identificação de bordas, texturas, cores e padrões</li>
+                        <li><strong>Análise e Interpretação:</strong> Classificação, detecção de objetos, segmentação</li>
+                        <li><strong>Tomada de Decisão:</strong> Ações baseadas na análise realizada</li>
+                    </ul>
+
+                    <h2>Principais Tarefas da Visão Computacional</h2>
+                    <p>
+                        A visão computacional engloba diversas tarefas especializadas:
+                    </p>
+                    <ul>
+                        <li><strong>Classificação de Imagens:</strong> Atribuir uma categoria a uma imagem inteira (ex: "gato" ou "cachorro")</li>
+                        <li><strong>Detecção de Objetos:</strong> Localizar e identificar múltiplos objetos em uma imagem</li>
+                        <li><strong>Segmentação:</strong> Dividir uma imagem em regiões ou segmentos significativos</li>
+                        <li><strong>Reconhecimento Facial:</strong> Identificar ou verificar pessoas através de suas faces</li>
+                        <li><strong>Rastreamento de Objetos:</strong> Seguir objetos através de sequências de vídeo</li>
+                        <li><strong>Estimação de Pose:</strong> Determinar a posição e orientação de objetos ou pessoas</li>
+                    </ul>
+
+                    <h2>Aplicações no Mundo Real</h2>
+                    <p>
+                        A visão computacional está presente em nosso cotidiano de maneiras surpreendentes:
+                    </p>
+                    <ul>
+                        <li><strong>Veículos Autônomos:</strong> Detecção de pedestres, sinais de trânsito e outros veículos</li>
+                        <li><strong>Medicina:</strong> Diagnóstico por imagem, detecção de tumores, análise de radiografias</li>
+                        <li><strong>Segurança:</strong> Sistemas de vigilância inteligente, controle de acesso facial</li>
+                        <li><strong>Varejo:</strong> Checkout automático, análise de comportamento do cliente</li>
+                        <li><strong>Agricultura:</strong> Monitoramento de culturas, detecção de pragas</li>
+                        <li><strong>Manufatura:</strong> Inspeção de qualidade, detecção de defeitos</li>
+                    </ul>
+
+                    <h2>Tecnologias Fundamentais</h2>
+                    <p>
+                        A visão computacional moderna se apoia em várias tecnologias-chave:
+                    </p>
+                    <ul>
+                        <li><strong>Processamento de Imagens:</strong> Técnicas para manipular e melhorar imagens</li>
+                        <li><strong>Machine Learning:</strong> Algoritmos que aprendem padrões a partir de dados</li>
+                        <li><strong>Deep Learning:</strong> Redes neurais profundas, especialmente CNNs (Redes Neurais Convolucionais)</li>
+                        <li><strong>Processamento de Vídeo:</strong> Análise de sequências temporais de imagens</li>
+                        <li><strong>Visão 3D:</strong> Reconstrução e compreensão de cenas tridimensionais</li>
+                    </ul>
+
+                    <h2>Desafios e Limitações</h2>
+                    <p>
+                        Apesar dos avanços, a visão computacional ainda enfrenta desafios significativos:
+                    </p>
+                    <ul>
+                        <li>Variações de iluminação e condições ambientais</li>
+                        <li>Oclusões parciais de objetos</li>
+                        <li>Variabilidade de aparência dos objetos</li>
+                        <li>Necessidade de grandes volumes de dados para treinamento</li>
+                        <li>Custo computacional de processamento em tempo real</li>
+                        <li>Questões éticas relacionadas à privacidade</li>
+                    </ul>
+
+                    <h2>O Futuro da Visão Computacional</h2>
+                    <p>
+                        O futuro promete avanços ainda mais impressionantes:
+                    </p>
+                    <ul>
+                        <li>Sistemas mais robustos e generalizáveis</li>
+                        <li>Integração com outras modalidades sensoriais</li>
+                        <li>Processamento em dispositivos edge (Edge AI)</li>
+                        <li>Compreensão de cenas em nível humano</li>
+                        <li>Aplicações em realidade aumentada e virtual</li>
+                    </ul>
+
+                    <h2>Conclusão</h2>
+                    <p>
+                        A visão computacional está transformando radicalmente como interagimos com a tecnologia e como as máquinas percebem o mundo. À medida que os algoritmos se tornam mais sofisticados e o hardware mais poderoso, as possibilidades são praticamente ilimitadas.
+                    </p>
+                    <p>
+                        Seja você um desenvolvedor, empresário ou entusiasta de tecnologia, compreender os fundamentos da visão computacional é essencial para navegar no futuro digital que está se desenhando.
+                    </p>
+                </article>
+            </div>
+
+            <!-- Navigation -->
+            <div class="mt-12 flex justify-center">
+                <a href="../home.html" class="btn-back px-8 py-3 rounded-full font-semibold">← Voltar para todos os artigos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-gray-800 mt-20">
+        <div class="container mx-auto max-w-6xl text-center">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center">
+                    <img src="https://www.alvorya.com.br/assets/images/min/Logo.png" alt="Alvorya Logo" onerror="this.onerror=null; this.src='../../assets/images/min/Logo.png'" class="w-12 h-12">
+                </div>
+                <span class="text-lg font-bold">alvorya <span class="text-red-500">blog</span></span>
+            </div>
+            <p class="text-gray-400 text-sm">Insights e inovação em tecnologia e IA</p>
+            <p class="text-gray-500 text-sm mt-4">&copy; 2025 Alvorya Blog. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

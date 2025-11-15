@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edge AI e Visão Computacional - Alvorya Blog</title>
+    <meta http-equiv="Content-Security-Policy" 
+      content="default-src 'self'; img-src 'self' https: data:; script-src 'self'; style-src 'self' 'unsafe-inline';">
+    <script type="module" src="./../../main.js"></script>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: linear-gradient(135deg, #1a2332 0%, #0f1419 100%); color: #e2e8f0; }
+        .navbar { backdrop-filter: blur(10px); background: rgba(26, 35, 50, 0.8); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .post-header { background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(147, 51, 234, 0.1) 50%, rgba(59, 130, 246, 0.1) 100%); }
+        .content-box { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .tag { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .btn-back { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); transition: all 0.3s ease; }
+        .btn-back:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4); }
+        article h2 { color: #ef4444; margin-top: 2rem; margin-bottom: 1rem; }
+        article p { margin-bottom: 1rem; line-height: 1.8; }
+        article ul { margin-left: 2rem; margin-bottom: 1rem; }
+        article li { margin-bottom: 0.5rem; line-height: 1.8; }
+    </style>
+    <link rel="icon" type="image/png" href="./../../assets/images/min/Logo.png">
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <img src="https://www.alvorya.com.br/assets/images/min/Logo.png" 
+                 alt="Alvorya Vision" 
+                 class="loader-logo"
+                 onerror="this.onerror=null; this.src='./../../assets/images/min/Logo.png'">
+            <div class="loader-spinner"></div>
+            <p class="loader-text">Carregando...</p>
+        </div>
+    </div>
+
+    <nav class="navbar fixed top-0 w-full z-50 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center">
+                    <img src="https://www.alvorya.com.br/assets/images/min/Logo.png" alt="Alvorya Logo" onerror="this.onerror=null; this.src='../../assets/images/min/Logo.png'" class="w-12 h-12">
+                </div>
+                <span class="text-xl font-bold">alvorya <span class="text-red-500">blog</span></span>
+            </div>
+            <a href="../home.html" class="btn-back px-6 py-2 rounded-full font-semibold">← Voltar ao Blog</a>
+        </div>
+    </nav>
+
+    <section class="post-header pt-32 pb-16 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <div class="mb-6"><span class="tag">Edge AI</span></div>
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">Edge AI: Rodando Modelos de Visão Computacional em Dispositivos Pequenos</h1>
+            <div class="flex items-center space-x-4 text-gray-400">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center">
+                        <img src="https://www.alvorya.com.br/assets/images/min/Logo-black.png" alt="Alvorya Logo" onerror="this.onerror=null; this.src='../../assets/images/min/Logo-black.png'" class="w-8 h-8" alt="">
+                    </div>
+                    <span>Equipe Alvorya</span>
+                </div>
+                <span>•</span>
+                <span>15 Nov 2025</span>
+                <span>•</span>
+                <span>8 min de leitura</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <div class="content-box rounded-2xl p-8 md:p-12">
+                <article class="prose prose-invert max-w-none">
+                    <p class="text-xl text-gray-300 mb-8">
+                        Edge AI está democratizando visão computacional, permitindo rodar modelos sofisticados em dispositivos pequenos e de baixo custo, sem dependência de cloud.
+                    </p>
+
+                    <h2>O que é Edge AI?</h2>
+                    <p>
+                        Edge AI refere-se à execução de algoritmos de inteligência artificial diretamente em dispositivos locais (edge devices) ao invés de servidores cloud centralizados. Para visão computacional, isso significa processar imagens e vídeos no próprio dispositivo.
+                    </p>
+
+                    <h3>Por que Edge AI?</h3>
+                    <ul>
+                        <li><strong>Latência Baixa:</strong> Respostas em milissegundos sem round-trip para cloud</li>
+                        <li><strong>Privacidade:</strong> Dados sensíveis não saem do dispositivo</li>
+                        <li><strong>Confiabilidade:</strong> Funciona sem conexão à internet</li>
+                        <li><strong>Custos Reduzidos:</strong> Sem custos recorrentes de cloud/bandwidth</li>
+                        <li><strong>Escalabilidade:</strong> Cada dispositivo processa independentemente</li>
+                    </ul>
+
+                    <h2>Dispositivos Edge Populares</h2>
+                    
+                    <h3>Raspberry Pi 4/5</h3>
+                    <ul>
+                        <li><strong>Preço:</strong> ~$35-75</li>
+                        <li><strong>CPU:</strong> ARM Cortex-A72 quad-core</li>
+                        <li><strong>RAM:</strong> 4-8GB</li>
+                        <li><strong>Ideal para:</strong> Projetos educacionais, IoT, protótipos</li>
+                        <li><strong>Performance CV:</strong> Modelos leves (MobileNet, YOLO Nano) ~5-15 FPS</li>
+                    </ul>
+
+                    <h3>NVIDIA Jetson Nano</h3>
+                    <ul>
+                        <li><strong>Preço:</strong> ~$99-149</li>
+                        <li><strong>GPU:</strong> 128-core Maxwell</li>
+                        <li><strong>Ideal para:</strong> Aplicações de visão computacional sérias</li>
+                        <li><strong>Performance CV:</strong> YOLOv5s ~20-30 FPS, suporta TensorRT</li>
+                    </ul>
+
+                    <h3>NVIDIA Jetson Xavier NX/Orin Nano</h3>
+                    <ul>
+                        <li><strong>Preço:</strong> $399-$499</li>
+                        <li><strong>Performance:</strong> 21-70 TOPS</li>
+                        <li><strong>Ideal para:</strong> Robótica, veículos autônomos, edge servers</li>
+                        <li><strong>Performance CV:</strong> YOLOv8 médio ~60+ FPS</li>
+                    </ul>
+
+                    <h3>Google Coral Dev Board / USB Accelerator</h3>
+                    <ul>
+                        <li><strong>Preço:</strong> $60-150</li>
+                        <li><strong>TPU:</strong> Edge TPU dedicado</li>
+                        <li><strong>Ideal para:</strong> TensorFlow Lite models</li>
+                        <li><strong>Performance CV:</strong> MobileNet v2 ~400 FPS (classificação)</li>
+                    </ul>
+
+                    <h3>Intel Neural Compute Stick 2</h3>
+                    <ul>
+                        <li><strong>Preço:</strong> ~$70</li>
+                        <li><strong>Formato:</strong> USB stick para adicionar a qualquer computador</li>
+                        <li><strong>Ideal para:</strong> Upgrade de dispositivos existentes</li>
+                    </ul>
+
+                    <h2>Arquitetura de um Sistema Edge AI</h2>
+                    <ul>
+                        <li><strong>Sensor (Câmera):</strong> USB webcam, CSI camera, IP camera</li>
+                        <li><strong>Pré-processamento:</strong> Resize, normalização (OpenCV)</li>
+                        <li><strong>Inferência:</strong> Modelo otimizado (TensorRT, TFLite, ONNX)</li>
+                        <li><strong>Pós-processamento:</strong> NMS, visualização, alertas</li>
+                        <li><strong>Output:</strong> Display local, MQTT, API</li>
+                    </ul>
+
+                    <h2>Otimizações Essenciais</h2>
+                    
+                    <h3>1. Model Quantization</h3>
+                    <p>Reduzir precisão de pesos para diminuir tamanho e acelerar inferência:</p>
+                    <ul>
+                        <li><strong>FP32 → FP16:</strong> Metade do tamanho, ~2x mais rápido</li>
+                        <li><strong>FP32 → INT8:</strong> 1/4 do tamanho, ~4x mais rápido</li>
+                        <li>Perda mínima de precisão (geralmente <1%)</li>
+                    </ul>
+
+                    <h3>2. Model Pruning</h3>
+                    <p>Remover neurônios/conexões menos importantes:</p>
+                    <ul>
+                        <li>Reduz parâmetros do modelo</li>
+                        <li>Acelera computação</li>
+                        <li>Pode manter 95%+ da precisão original</li>
+                    </ul>
+
+                    <h3>3. Knowledge Distillation</h3>
+                    <p>Treinar modelo pequeno (student) para imitar modelo grande (teacher)</p>
+
+                    <h3>4. Arquiteturas Eficientes</h3>
+                    <ul>
+                        <li><strong>MobileNet:</strong> Separable convolutions</li>
+                        <li><strong>EfficientNet:</strong> Balanceamento otimizado</li>
+                        <li><strong>YOLO Nano/Tiny:</strong> Versões leves de YOLO</li>
+                        <li><strong>ShuffleNet:</strong> Channel shuffle para eficiência</li>
+                    </ul>
+
+                    <h2>Frameworks e Runtimes</h2>
+                    
+                    <h3>TensorFlow Lite</h3>
+                    <ul>
+                        <li>Oficial do Google para mobile/edge</li>
+                        <li>Suporte excelente para quantização</li>
+                        <li>Delegates para GPU, TPU, NNAPI</li>
+                        <li>Ideal para: Coral, Android, iOS</li>
+                    </ul>
+
+                    <h3>ONNX Runtime</h3>
+                    <ul>
+                        <li>Formato universal, treinado em qualquer framework</li>
+                        <li>Otimizações automáticas</li>
+                        <li>Suporta múltiplos hardware accelerators</li>
+                    </ul>
+
+                    <h3>TensorRT (NVIDIA)</h3>
+                    <ul>
+                        <li>Máxima performance em hardware NVIDIA</li>
+                        <li>Otimizações agressivas</li>
+                        <li>2-5x speedup vs. TensorFlow nativo</li>
+                        <li>Ideal para: Jetson devices</li>
+                    </ul>
+
+                    <h3>OpenVINO (Intel)</h3>
+                    <ul>
+                        <li>Otimizado para hardware Intel</li>
+                        <li>Suporta CPU, GPU, VPU</li>
+                        <li>Model Optimizer para conversão</li>
+                    </ul>
+
+                    <h2>Setup Prático: Jetson Nano + Docker</h2>
+                    <p>Exemplo de stack completo:</p>
+                    <ul>
+                        <li><strong>OS:</strong> JetPack (Ubuntu-based)</li>
+                        <li><strong>Container:</strong> Docker com CUDA support</li>
+                        <li><strong>Framework:</strong> PyTorch → ONNX → TensorRT</li>
+                        <li><strong>Camera:</strong> CSI Raspberry Pi Camera V2</li>
+                        <li><strong>Modelo:</strong> YOLOv8n otimizado</li>
+                    </ul>
+
+                    <h2>Exemplo: Detecção de Objetos em Tempo Real</h2>
+                    <p>Pipeline típico em Jetson Nano:</p>
+                    <ul>
+                        <li><strong>1. Captura:</strong> 1280x720 @ 30fps via GStreamer</li>
+                        <li><strong>2. Pre-proc:</strong> Resize para 640x640, normalização</li>
+                        <li><strong>3. Inferência:</strong> YOLOv8n TensorRT (~15ms)</li>
+                        <li><strong>4. NMS:</strong> Filtrar detecções (~2ms)</li>
+                        <li><strong>5. Display:</strong> Desenhar bounding boxes (~3ms)</li>
+                        <li><strong>Total:</strong> ~20ms/frame → 50 FPS</li>
+                    </ul>
+
+                    <h2>Casos de Uso Edge AI</h2>
+                    
+                    <h3>Smart Cameras/Security</h3>
+                    <ul>
+                        <li>Detecção de intrusos local (sem enviar vídeo para cloud)</li>
+                        <li>Reconhecimento facial na porta de casa</li>
+                        <li>Alertas apenas quando necessário</li>
+                    </ul>
+
+                    <h3>Manufatura/Qualidade</h3>
+                    <ul>
+                        <li>Inspeção de defeitos em linha de produção</li>
+                        <li>Latência sub-100ms para decisões</li>
+                        <li>Funciona mesmo sem conexão internet</li>
+                    </ul>
+
+                    <h3>Agricultura</h3>
+                    <ul>
+                        <li>Drones com detecção de pragas onboard</li>
+                        <li>Robôs de colheita autônomos</li>
+                        <li>Câmeras em estufas (sem cobertura 4G)</li>
+                    </ul>
+
+                    <h3>Varejo</h3>
+                    <ul>
+                        <li>Checkout automático sem câmeras</li>
+                        <li>Análise de prateleiras em tempo real</li>
+                        <li>Contagem de pessoas privada</li>
+                    </ul>
+
+                    <h3>Robótica</h3>
+                    <ul>
+                        <li>Navegação autônoma</li>
+                        <li>Manipulação de objetos</li>
+                        <li>SLAM (mapeamento e localização)</li>
+                    </ul>
+
+                    <h2>Desafios do Edge AI</h2>
+                    
+                    <h3>Limitações de Hardware</h3>
+                    <ul>
+                        <li>Memória limitada (normalmente 2-8GB)</li>
+                        <li>Processamento mais lento que servidores</li>
+                        <li>Aquecimento em operação contínua</li>
+                        <li>Trade-off velocidade vs. precisão</li>
+                    </ul>
+
+                    <h3>Desenvolvimento</h3>
+                    <ul>
+                        <li>Curva de aprendizado de otimizações</li>
+                        <li>Debugging mais complexo</li>
+                        <li>Compatibilidade entre frameworks</li>
+                        <li>Versionamento de modelos em campo</li>
+                    </ul>
+
+                    <h3>Deployment</h3>
+                    <ul>
+                        <li>Atualizações OTA (over-the-air)</li>
+                        <li>Gerenciamento de frota de dispositivos</li>
+                        <li>Monitoramento e logs distribuídos</li>
+                    </ul>
+
+                    <h2>Boas Práticas</h2>
+                    <ul>
+                        <li><strong>Comece Simples:</strong> Modelo leve primeiro, depois otimize</li>
+                        <li><strong>Benchmark:</strong> Teste performance em hardware real cedo</li>
+                        <li><strong>Containerize:</strong> Docker facilita deployment consistente</li>
+                        <li><strong>Monitor:</strong> Logs de temperatura, FPS, CPU/GPU usage</li>
+                        <li><strong>Fallback:</strong> Tenha plano B se inferência falhar</li>
+                        <li><strong>Update Strategy:</strong> Como atualizar modelos remotamente</li>
+                    </ul>
+
+                    <h2>Hybrid Edge-Cloud</h2>
+                    <p>Melhor dos dois mundos:</p>
+                    <ul>
+                        <li><strong>Edge:</strong> Processamento real-time, decisões críticas</li>
+                        <li><strong>Cloud:</strong> Análise agregada, re-treinamento, dashboards</li>
+                        <li>Edge envia apenas eventos/métricas, não vídeo bruto</li>
+                        <li>Modelos treinados no cloud, deployed no edge</li>
+                    </ul>
+
+                    <h2>Ferramentas Úteis</h2>
+                    <ul>
+                        <li><strong>Balena:</strong> Gerenciamento de frota de dispositivos</li>
+                        <li><strong>Edge Impulse:</strong> Platform end-to-end para edge ML</li>
+                        <li><strong>NVIDIA Fleet Command:</strong> Gerenciar Jetson devices</li>
+                        <li><strong>AWS Greengrass:</strong> Edge runtime da AWS</li>
+                        <li><strong>Azure IoT Edge:</strong> Solução Microsoft</li>
+                    </ul>
+
+                    <h2>O Futuro do Edge AI</h2>
+                    <ul>
+                        <li><strong>Hardware Mais Poderoso:</strong> Próxima geração de chips edge</li>
+                        <li><strong>Modelos Mais Eficientes:</strong> Arquiteturas otimizadas para edge</li>
+                        <li><strong>AutoML para Edge:</strong> Encontrar arquiteturas ideais automaticamente</li>
+                        <li><strong>Federated Learning:</strong> Treinar modelos distribuídos preservando privacidade</li>
+                        <li><strong>Neuromorphic Computing:</strong> Chips inspirados no cérebro</li>
+                    </ul>
+
+                    <h2>Conclusão</h2>
+                    <p>
+                        Edge AI está tornando visão computacional acessível e prática para uma gama imensa de aplicações. Com hardware cada vez mais poderoso e acessível, frameworks otimizados e técnicas de compressão avançadas, rodar modelos sofisticados em dispositivos pequenos não é mais ficção científica.
+                    </p>
+                    <p>
+                        Para desenvolvedores e empresas, investir em edge AI significa criar soluções mais rápidas, privadas, confiáveis e econômicas. O futuro da inteligência é distribuído, e visão computacional está na vanguarda dessa transformação.
+                    </p>
+                </article>
+            </div>
+            <div class="mt-12 flex justify-center">
+                <a href="../home.html" class="btn-back px-8 py-3 rounded-full font-semibold">← Voltar para todos os artigos</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-4 border-t border-gray-800 mt-20">
+        <div class="container mx-auto max-w-6xl text-center">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center">
+                    <img src="https://www.alvorya.com.br/assets/images/min/Logo.png" alt="Alvorya Logo" onerror="this.onerror=null; this.src='../../assets/images/min/Logo.png'" class="w-12 h-12">
+                </div>
+                <span class="text-lg font-bold">alvorya <span class="text-red-500">blog</span></span>
+            </div>
+            <p class="text-gray-400 text-sm">Insights e inovação em tecnologia e IA</p>
+            <p class="text-gray-500 text-sm mt-4">&copy; 2025 Alvorya Blog. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
